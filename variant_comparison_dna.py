@@ -7,8 +7,8 @@ hd730_dict = {}
 with open("TruQ1_HD730.txt") as hd730:
 	for line in hd730:
 		x = line.split('\t')
-		v = "chr" + x[3] + ":" + x[4] #concatenate base change
-		hd730_dict[v] = None		# 4 is variant position, 0 is gene
+		v = "chr" + x[3] + ":" + x[4] #concatenate position and base change
+		hd730_dict[v] = None
 print(hd730_dict)
 
 
@@ -31,14 +31,14 @@ for sample in hd730_samples:
 		hd730_samples_dict = {}
 		for line in file:
 			x = line.split('\t') 	# Split the columns based on tabs
-			v = x[1] + ":" + x[2] + x[3] + ">" +  x[4]
-			hd730_samples_dict[v] = x[5]               # 2 is variant position, 0 is gene, concatenate base change 
+			v = x[1] + ":" + x[2] + x[3] + ">" +  x[4] #concatenate position and base change
+			hd730_samples_dict[v] = x[5]               #5 is vaf 
 			#print(hd730_samples_dict)
 
 
 # Comparing dictionaries with the reference standard dictionary
 	# Comparing both keys and values
-#	with open("dna_hd730.txt", "a") as output_dna_hd730:
+	#with open("dna_hd730.txt", "a") as output_dna_hd730:
 	for key in hd730_dict.keys():
 		if key in hd730_samples_dict.keys():
 			print(sample, key, hd730_samples_dict[key], "True")# file = output_dna_hd730)

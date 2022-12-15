@@ -1,0 +1,300 @@
+/Output/results/220620_A01771_0050_AH7K37DRX2/Gathered_Results/Database/22M81471_fusion_check.csv RNA Fusion False
+/Output/results/220620_A01771_0050_AH7K37DRX2/Gathered_Results/Database/22M81471_fusion_check.csv CCDC6-RET True
+/Output/results/220620_A01771_0050_AH7K37DRX2/Gathered_Results/Database/22M81471_fusion_check.csv CD74-ROS1;GOPC True
+/Output/results/220620_A01771_0050_AH7K37DRX2/Gathered_Results/Database/22M81471_fusion_check.csv EGFR True
+/Output/results/220620_A01771_0050_AH7K37DRX2/Gathered_Results/Database/22M81471_fusion_check.csv EGFR-SEPT14 True
+/Output/results/220620_A01771_0050_AH7K37DRX2/Gathered_Results/Database/22M81471_fusion_check.csv EML4-ALK True
+/Output/results/220620_A01771_0050_AH7K37DRX2/Gathered_Results/Database/22M81471_fusion_check.csv ETV6-NTRK3 True
+/Output/results/220620_A01771_0050_AH7K37DRX2/Gathered_Results/Database/22M81471_fusion_check.csv FGFR3-BAIAP2L1 True
+/Output/results/220620_A01771_0050_AH7K37DRX2/Gathered_Results/Database/22M81471_fusion_check.csv FGFR3-TACC3 True
+/Output/results/220620_A01771_0050_AH7K37DRX2/Gathered_Results/Database/22M81471_fusion_check.csv KIF5B-RET True
+/Output/results/220620_A01771_0050_AH7K37DRX2/Gathered_Results/Database/22M81471_fusion_check.csv LMNA-NTRK1 True
+/Output/results/220620_A01771_0050_AH7K37DRX2/Gathered_Results/Database/22M81471_fusion_check.csv MET True
+/Output/results/220620_A01771_0050_AH7K37DRX2/Gathered_Results/Database/22M81471_fusion_check.csv NCOA4-RET True
+/Output/results/220620_A01771_0050_AH7K37DRX2/Gathered_Results/Database/22M81471_fusion_check.csv AC016683.6;PAX8-PPARG True
+/Output/results/220620_A01771_0050_AH7K37DRX2/Gathered_Results/Database/22M81471_fusion_check.csv SLC34A2-ROS1;GOPC True
+/Output/results/220620_A01771_0050_AH7K37DRX2/Gathered_Results/Database/22M81471_fusion_check.csv SLC45A3-BRAF True
+/Output/results/220620_A01771_0050_AH7K37DRX2/Gathered_Results/Database/22M81471_fusion_check.csv TFG-NTRK1 True
+/Output/results/220620_A01771_0050_AH7K37DRX2/Gathered_Results/Database/22M81471_fusion_check.csv TMPRSS2-ERG True
+/Output/results/220620_A01771_0050_AH7K37DRX2/Gathered_Results/Database/22M81471_fusion_check.csv TPM3-NTRK1 True
+/Output/results/220620_A01771_0050_AH7K37DRX2/Gathered_Results/Database/22M81471_fusion_check.csv  False
+/Output/results/220627_A01771_0053_AH7K5KDRX2/Gathered_Results/Database/22M81471_fusion_check.csv RNA Fusion False
+/Output/results/220627_A01771_0053_AH7K5KDRX2/Gathered_Results/Database/22M81471_fusion_check.csv CCDC6-RET True
+/Output/results/220627_A01771_0053_AH7K5KDRX2/Gathered_Results/Database/22M81471_fusion_check.csv CD74-ROS1;GOPC True
+/Output/results/220627_A01771_0053_AH7K5KDRX2/Gathered_Results/Database/22M81471_fusion_check.csv EGFR True
+/Output/results/220627_A01771_0053_AH7K5KDRX2/Gathered_Results/Database/22M81471_fusion_check.csv EGFR-SEPT14 True
+/Output/results/220627_A01771_0053_AH7K5KDRX2/Gathered_Results/Database/22M81471_fusion_check.csv EML4-ALK True
+/Output/results/220627_A01771_0053_AH7K5KDRX2/Gathered_Results/Database/22M81471_fusion_check.csv ETV6-NTRK3 True
+/Output/results/220627_A01771_0053_AH7K5KDRX2/Gathered_Results/Database/22M81471_fusion_check.csv FGFR3-BAIAP2L1 True
+/Output/results/220627_A01771_0053_AH7K5KDRX2/Gathered_Results/Database/22M81471_fusion_check.csv FGFR3-TACC3 True
+/Output/results/220627_A01771_0053_AH7K5KDRX2/Gathered_Results/Database/22M81471_fusion_check.csv KIF5B-RET True
+/Output/results/220627_A01771_0053_AH7K5KDRX2/Gathered_Results/Database/22M81471_fusion_check.csv LMNA-NTRK1 True
+/Output/results/220627_A01771_0053_AH7K5KDRX2/Gathered_Results/Database/22M81471_fusion_check.csv MET True
+/Output/results/220627_A01771_0053_AH7K5KDRX2/Gathered_Results/Database/22M81471_fusion_check.csv NCOA4-RET True
+/Output/results/220627_A01771_0053_AH7K5KDRX2/Gathered_Results/Database/22M81471_fusion_check.csv AC016683.6;PAX8-PPARG False
+/Output/results/220627_A01771_0053_AH7K5KDRX2/Gathered_Results/Database/22M81471_fusion_check.csv SLC34A2-ROS1;GOPC True
+/Output/results/220627_A01771_0053_AH7K5KDRX2/Gathered_Results/Database/22M81471_fusion_check.csv SLC45A3-BRAF True
+/Output/results/220627_A01771_0053_AH7K5KDRX2/Gathered_Results/Database/22M81471_fusion_check.csv TFG-NTRK1 True
+/Output/results/220627_A01771_0053_AH7K5KDRX2/Gathered_Results/Database/22M81471_fusion_check.csv TMPRSS2-ERG True
+/Output/results/220627_A01771_0053_AH7K5KDRX2/Gathered_Results/Database/22M81471_fusion_check.csv TPM3-NTRK1 True
+/Output/results/220627_A01771_0053_AH7K5KDRX2/Gathered_Results/Database/22M81471_fusion_check.csv  False
+/Output/results/220615_A01771_0048_AH7K5CDRX2/Gathered_Results/Database/22M81471_fusion_check.csv RNA Fusion False
+/Output/results/220615_A01771_0048_AH7K5CDRX2/Gathered_Results/Database/22M81471_fusion_check.csv CCDC6-RET True
+/Output/results/220615_A01771_0048_AH7K5CDRX2/Gathered_Results/Database/22M81471_fusion_check.csv CD74-ROS1;GOPC True
+/Output/results/220615_A01771_0048_AH7K5CDRX2/Gathered_Results/Database/22M81471_fusion_check.csv EGFR True
+/Output/results/220615_A01771_0048_AH7K5CDRX2/Gathered_Results/Database/22M81471_fusion_check.csv EGFR-SEPT14 True
+/Output/results/220615_A01771_0048_AH7K5CDRX2/Gathered_Results/Database/22M81471_fusion_check.csv EML4-ALK True
+/Output/results/220615_A01771_0048_AH7K5CDRX2/Gathered_Results/Database/22M81471_fusion_check.csv ETV6-NTRK3 True
+/Output/results/220615_A01771_0048_AH7K5CDRX2/Gathered_Results/Database/22M81471_fusion_check.csv FGFR3-BAIAP2L1 True
+/Output/results/220615_A01771_0048_AH7K5CDRX2/Gathered_Results/Database/22M81471_fusion_check.csv FGFR3-TACC3 True
+/Output/results/220615_A01771_0048_AH7K5CDRX2/Gathered_Results/Database/22M81471_fusion_check.csv KIF5B-RET True
+/Output/results/220615_A01771_0048_AH7K5CDRX2/Gathered_Results/Database/22M81471_fusion_check.csv LMNA-NTRK1 True
+/Output/results/220615_A01771_0048_AH7K5CDRX2/Gathered_Results/Database/22M81471_fusion_check.csv MET True
+/Output/results/220615_A01771_0048_AH7K5CDRX2/Gathered_Results/Database/22M81471_fusion_check.csv NCOA4-RET True
+/Output/results/220615_A01771_0048_AH7K5CDRX2/Gathered_Results/Database/22M81471_fusion_check.csv AC016683.6;PAX8-PPARG False
+/Output/results/220615_A01771_0048_AH7K5CDRX2/Gathered_Results/Database/22M81471_fusion_check.csv SLC34A2-ROS1;GOPC True
+/Output/results/220615_A01771_0048_AH7K5CDRX2/Gathered_Results/Database/22M81471_fusion_check.csv SLC45A3-BRAF True
+/Output/results/220615_A01771_0048_AH7K5CDRX2/Gathered_Results/Database/22M81471_fusion_check.csv TFG-NTRK1 True
+/Output/results/220615_A01771_0048_AH7K5CDRX2/Gathered_Results/Database/22M81471_fusion_check.csv TMPRSS2-ERG True
+/Output/results/220615_A01771_0048_AH7K5CDRX2/Gathered_Results/Database/22M81471_fusion_check.csv TPM3-NTRK1 True
+/Output/results/220615_A01771_0048_AH7K5CDRX2/Gathered_Results/Database/22M81471_fusion_check.csv  False
+/Output/results/220622_A01771_0051_AH7K27DRX2/Gathered_Results/Database/22M81471_fusion_check.csv RNA Fusion False
+/Output/results/220622_A01771_0051_AH7K27DRX2/Gathered_Results/Database/22M81471_fusion_check.csv CCDC6-RET True
+/Output/results/220622_A01771_0051_AH7K27DRX2/Gathered_Results/Database/22M81471_fusion_check.csv CD74-ROS1;GOPC True
+/Output/results/220622_A01771_0051_AH7K27DRX2/Gathered_Results/Database/22M81471_fusion_check.csv EGFR True
+/Output/results/220622_A01771_0051_AH7K27DRX2/Gathered_Results/Database/22M81471_fusion_check.csv EGFR-SEPT14 True
+/Output/results/220622_A01771_0051_AH7K27DRX2/Gathered_Results/Database/22M81471_fusion_check.csv EML4-ALK True
+/Output/results/220622_A01771_0051_AH7K27DRX2/Gathered_Results/Database/22M81471_fusion_check.csv ETV6-NTRK3 True
+/Output/results/220622_A01771_0051_AH7K27DRX2/Gathered_Results/Database/22M81471_fusion_check.csv FGFR3-BAIAP2L1 True
+/Output/results/220622_A01771_0051_AH7K27DRX2/Gathered_Results/Database/22M81471_fusion_check.csv FGFR3-TACC3 True
+/Output/results/220622_A01771_0051_AH7K27DRX2/Gathered_Results/Database/22M81471_fusion_check.csv KIF5B-RET True
+/Output/results/220622_A01771_0051_AH7K27DRX2/Gathered_Results/Database/22M81471_fusion_check.csv LMNA-NTRK1 True
+/Output/results/220622_A01771_0051_AH7K27DRX2/Gathered_Results/Database/22M81471_fusion_check.csv MET True
+/Output/results/220622_A01771_0051_AH7K27DRX2/Gathered_Results/Database/22M81471_fusion_check.csv NCOA4-RET True
+/Output/results/220622_A01771_0051_AH7K27DRX2/Gathered_Results/Database/22M81471_fusion_check.csv AC016683.6;PAX8-PPARG False
+/Output/results/220622_A01771_0051_AH7K27DRX2/Gathered_Results/Database/22M81471_fusion_check.csv SLC34A2-ROS1;GOPC True
+/Output/results/220622_A01771_0051_AH7K27DRX2/Gathered_Results/Database/22M81471_fusion_check.csv SLC45A3-BRAF True
+/Output/results/220622_A01771_0051_AH7K27DRX2/Gathered_Results/Database/22M81471_fusion_check.csv TFG-NTRK1 True
+/Output/results/220622_A01771_0051_AH7K27DRX2/Gathered_Results/Database/22M81471_fusion_check.csv TMPRSS2-ERG True
+/Output/results/220622_A01771_0051_AH7K27DRX2/Gathered_Results/Database/22M81471_fusion_check.csv TPM3-NTRK1 True
+/Output/results/220622_A01771_0051_AH7K27DRX2/Gathered_Results/Database/22M81471_fusion_check.csv  False
+/Output/results/220629_A01771_0055_AH7GK7DRX2/Gathered_Results/Database/22M81472_fusion_check.csv RNA Fusion False
+/Output/results/220629_A01771_0055_AH7GK7DRX2/Gathered_Results/Database/22M81472_fusion_check.csv CCDC6-RET True
+/Output/results/220629_A01771_0055_AH7GK7DRX2/Gathered_Results/Database/22M81472_fusion_check.csv CD74-ROS1;GOPC True
+/Output/results/220629_A01771_0055_AH7GK7DRX2/Gathered_Results/Database/22M81472_fusion_check.csv EGFR True
+/Output/results/220629_A01771_0055_AH7GK7DRX2/Gathered_Results/Database/22M81472_fusion_check.csv EGFR-SEPT14 True
+/Output/results/220629_A01771_0055_AH7GK7DRX2/Gathered_Results/Database/22M81472_fusion_check.csv EML4-ALK True
+/Output/results/220629_A01771_0055_AH7GK7DRX2/Gathered_Results/Database/22M81472_fusion_check.csv ETV6-NTRK3 True
+/Output/results/220629_A01771_0055_AH7GK7DRX2/Gathered_Results/Database/22M81472_fusion_check.csv FGFR3-BAIAP2L1 True
+/Output/results/220629_A01771_0055_AH7GK7DRX2/Gathered_Results/Database/22M81472_fusion_check.csv FGFR3-TACC3 True
+/Output/results/220629_A01771_0055_AH7GK7DRX2/Gathered_Results/Database/22M81472_fusion_check.csv KIF5B-RET True
+/Output/results/220629_A01771_0055_AH7GK7DRX2/Gathered_Results/Database/22M81472_fusion_check.csv LMNA-NTRK1 True
+/Output/results/220629_A01771_0055_AH7GK7DRX2/Gathered_Results/Database/22M81472_fusion_check.csv MET True
+/Output/results/220629_A01771_0055_AH7GK7DRX2/Gathered_Results/Database/22M81472_fusion_check.csv NCOA4-RET True
+/Output/results/220629_A01771_0055_AH7GK7DRX2/Gathered_Results/Database/22M81472_fusion_check.csv AC016683.6;PAX8-PPARG True
+/Output/results/220629_A01771_0055_AH7GK7DRX2/Gathered_Results/Database/22M81472_fusion_check.csv SLC34A2-ROS1;GOPC True
+/Output/results/220629_A01771_0055_AH7GK7DRX2/Gathered_Results/Database/22M81472_fusion_check.csv SLC45A3-BRAF True
+/Output/results/220629_A01771_0055_AH7GK7DRX2/Gathered_Results/Database/22M81472_fusion_check.csv TFG-NTRK1 True
+/Output/results/220629_A01771_0055_AH7GK7DRX2/Gathered_Results/Database/22M81472_fusion_check.csv TMPRSS2-ERG True
+/Output/results/220629_A01771_0055_AH7GK7DRX2/Gathered_Results/Database/22M81472_fusion_check.csv TPM3-NTRK1 True
+/Output/results/220629_A01771_0055_AH7GK7DRX2/Gathered_Results/Database/22M81472_fusion_check.csv  False
+/Output/results/220921_A01771_0085_BHLL7JDRX2/Gathered_Results/Database/22M81472_fusion_check.csv RNA Fusion False
+/Output/results/220921_A01771_0085_BHLL7JDRX2/Gathered_Results/Database/22M81472_fusion_check.csv CCDC6-RET True
+/Output/results/220921_A01771_0085_BHLL7JDRX2/Gathered_Results/Database/22M81472_fusion_check.csv CD74-ROS1;GOPC True
+/Output/results/220921_A01771_0085_BHLL7JDRX2/Gathered_Results/Database/22M81472_fusion_check.csv EGFR True
+/Output/results/220921_A01771_0085_BHLL7JDRX2/Gathered_Results/Database/22M81472_fusion_check.csv EGFR-SEPT14 True
+/Output/results/220921_A01771_0085_BHLL7JDRX2/Gathered_Results/Database/22M81472_fusion_check.csv EML4-ALK True
+/Output/results/220921_A01771_0085_BHLL7JDRX2/Gathered_Results/Database/22M81472_fusion_check.csv ETV6-NTRK3 True
+/Output/results/220921_A01771_0085_BHLL7JDRX2/Gathered_Results/Database/22M81472_fusion_check.csv FGFR3-BAIAP2L1 True
+/Output/results/220921_A01771_0085_BHLL7JDRX2/Gathered_Results/Database/22M81472_fusion_check.csv FGFR3-TACC3 True
+/Output/results/220921_A01771_0085_BHLL7JDRX2/Gathered_Results/Database/22M81472_fusion_check.csv KIF5B-RET True
+/Output/results/220921_A01771_0085_BHLL7JDRX2/Gathered_Results/Database/22M81472_fusion_check.csv LMNA-NTRK1 True
+/Output/results/220921_A01771_0085_BHLL7JDRX2/Gathered_Results/Database/22M81472_fusion_check.csv MET True
+/Output/results/220921_A01771_0085_BHLL7JDRX2/Gathered_Results/Database/22M81472_fusion_check.csv NCOA4-RET True
+/Output/results/220921_A01771_0085_BHLL7JDRX2/Gathered_Results/Database/22M81472_fusion_check.csv AC016683.6;PAX8-PPARG True
+/Output/results/220921_A01771_0085_BHLL7JDRX2/Gathered_Results/Database/22M81472_fusion_check.csv SLC34A2-ROS1;GOPC True
+/Output/results/220921_A01771_0085_BHLL7JDRX2/Gathered_Results/Database/22M81472_fusion_check.csv SLC45A3-BRAF True
+/Output/results/220921_A01771_0085_BHLL7JDRX2/Gathered_Results/Database/22M81472_fusion_check.csv TFG-NTRK1 True
+/Output/results/220921_A01771_0085_BHLL7JDRX2/Gathered_Results/Database/22M81472_fusion_check.csv TMPRSS2-ERG True
+/Output/results/220921_A01771_0085_BHLL7JDRX2/Gathered_Results/Database/22M81472_fusion_check.csv TPM3-NTRK1 True
+/Output/results/220921_A01771_0085_BHLL7JDRX2/Gathered_Results/Database/22M81472_fusion_check.csv  False
+/Output/results/220912_A01771_0080_BHJ2CVDRX2/Gathered_Results/Database/22M81472_fusion_check.csv RNA Fusion False
+/Output/results/220912_A01771_0080_BHJ2CVDRX2/Gathered_Results/Database/22M81472_fusion_check.csv CCDC6-RET True
+/Output/results/220912_A01771_0080_BHJ2CVDRX2/Gathered_Results/Database/22M81472_fusion_check.csv CD74-ROS1;GOPC True
+/Output/results/220912_A01771_0080_BHJ2CVDRX2/Gathered_Results/Database/22M81472_fusion_check.csv EGFR True
+/Output/results/220912_A01771_0080_BHJ2CVDRX2/Gathered_Results/Database/22M81472_fusion_check.csv EGFR-SEPT14 True
+/Output/results/220912_A01771_0080_BHJ2CVDRX2/Gathered_Results/Database/22M81472_fusion_check.csv EML4-ALK True
+/Output/results/220912_A01771_0080_BHJ2CVDRX2/Gathered_Results/Database/22M81472_fusion_check.csv ETV6-NTRK3 True
+/Output/results/220912_A01771_0080_BHJ2CVDRX2/Gathered_Results/Database/22M81472_fusion_check.csv FGFR3-BAIAP2L1 True
+/Output/results/220912_A01771_0080_BHJ2CVDRX2/Gathered_Results/Database/22M81472_fusion_check.csv FGFR3-TACC3 True
+/Output/results/220912_A01771_0080_BHJ2CVDRX2/Gathered_Results/Database/22M81472_fusion_check.csv KIF5B-RET True
+/Output/results/220912_A01771_0080_BHJ2CVDRX2/Gathered_Results/Database/22M81472_fusion_check.csv LMNA-NTRK1 True
+/Output/results/220912_A01771_0080_BHJ2CVDRX2/Gathered_Results/Database/22M81472_fusion_check.csv MET True
+/Output/results/220912_A01771_0080_BHJ2CVDRX2/Gathered_Results/Database/22M81472_fusion_check.csv NCOA4-RET True
+/Output/results/220912_A01771_0080_BHJ2CVDRX2/Gathered_Results/Database/22M81472_fusion_check.csv AC016683.6;PAX8-PPARG True
+/Output/results/220912_A01771_0080_BHJ2CVDRX2/Gathered_Results/Database/22M81472_fusion_check.csv SLC34A2-ROS1;GOPC True
+/Output/results/220912_A01771_0080_BHJ2CVDRX2/Gathered_Results/Database/22M81472_fusion_check.csv SLC45A3-BRAF True
+/Output/results/220912_A01771_0080_BHJ2CVDRX2/Gathered_Results/Database/22M81472_fusion_check.csv TFG-NTRK1 True
+/Output/results/220912_A01771_0080_BHJ2CVDRX2/Gathered_Results/Database/22M81472_fusion_check.csv TMPRSS2-ERG True
+/Output/results/220912_A01771_0080_BHJ2CVDRX2/Gathered_Results/Database/22M81472_fusion_check.csv TPM3-NTRK1 False
+/Output/results/220912_A01771_0080_BHJ2CVDRX2/Gathered_Results/Database/22M81472_fusion_check.csv  False
+/Output/results/220725_A00748_0282_AH7GL5DRX2/Gathered_Results/Database/22M81472_fusion_check.csv RNA Fusion False
+/Output/results/220725_A00748_0282_AH7GL5DRX2/Gathered_Results/Database/22M81472_fusion_check.csv CCDC6-RET True
+/Output/results/220725_A00748_0282_AH7GL5DRX2/Gathered_Results/Database/22M81472_fusion_check.csv CD74-ROS1;GOPC True
+/Output/results/220725_A00748_0282_AH7GL5DRX2/Gathered_Results/Database/22M81472_fusion_check.csv EGFR True
+/Output/results/220725_A00748_0282_AH7GL5DRX2/Gathered_Results/Database/22M81472_fusion_check.csv EGFR-SEPT14 True
+/Output/results/220725_A00748_0282_AH7GL5DRX2/Gathered_Results/Database/22M81472_fusion_check.csv EML4-ALK True
+/Output/results/220725_A00748_0282_AH7GL5DRX2/Gathered_Results/Database/22M81472_fusion_check.csv ETV6-NTRK3 True
+/Output/results/220725_A00748_0282_AH7GL5DRX2/Gathered_Results/Database/22M81472_fusion_check.csv FGFR3-BAIAP2L1 True
+/Output/results/220725_A00748_0282_AH7GL5DRX2/Gathered_Results/Database/22M81472_fusion_check.csv FGFR3-TACC3 True
+/Output/results/220725_A00748_0282_AH7GL5DRX2/Gathered_Results/Database/22M81472_fusion_check.csv KIF5B-RET True
+/Output/results/220725_A00748_0282_AH7GL5DRX2/Gathered_Results/Database/22M81472_fusion_check.csv LMNA-NTRK1 True
+/Output/results/220725_A00748_0282_AH7GL5DRX2/Gathered_Results/Database/22M81472_fusion_check.csv MET True
+/Output/results/220725_A00748_0282_AH7GL5DRX2/Gathered_Results/Database/22M81472_fusion_check.csv NCOA4-RET True
+/Output/results/220725_A00748_0282_AH7GL5DRX2/Gathered_Results/Database/22M81472_fusion_check.csv AC016683.6;PAX8-PPARG False
+/Output/results/220725_A00748_0282_AH7GL5DRX2/Gathered_Results/Database/22M81472_fusion_check.csv SLC34A2-ROS1;GOPC False
+/Output/results/220725_A00748_0282_AH7GL5DRX2/Gathered_Results/Database/22M81472_fusion_check.csv SLC45A3-BRAF True
+/Output/results/220725_A00748_0282_AH7GL5DRX2/Gathered_Results/Database/22M81472_fusion_check.csv TFG-NTRK1 True
+/Output/results/220725_A00748_0282_AH7GL5DRX2/Gathered_Results/Database/22M81472_fusion_check.csv TMPRSS2-ERG True
+/Output/results/220725_A00748_0282_AH7GL5DRX2/Gathered_Results/Database/22M81472_fusion_check.csv TPM3-NTRK1 True
+/Output/results/220725_A00748_0282_AH7GL5DRX2/Gathered_Results/Database/22M81472_fusion_check.csv  False
+/Output/results/220729_A00748_0285_BH7JJ5DRX2/Gathered_Results/Database/22M81472_fusion_check.csv RNA Fusion False
+/Output/results/220729_A00748_0285_BH7JJ5DRX2/Gathered_Results/Database/22M81472_fusion_check.csv CCDC6-RET True
+/Output/results/220729_A00748_0285_BH7JJ5DRX2/Gathered_Results/Database/22M81472_fusion_check.csv CD74-ROS1;GOPC True
+/Output/results/220729_A00748_0285_BH7JJ5DRX2/Gathered_Results/Database/22M81472_fusion_check.csv EGFR True
+/Output/results/220729_A00748_0285_BH7JJ5DRX2/Gathered_Results/Database/22M81472_fusion_check.csv EGFR-SEPT14 True
+/Output/results/220729_A00748_0285_BH7JJ5DRX2/Gathered_Results/Database/22M81472_fusion_check.csv EML4-ALK True
+/Output/results/220729_A00748_0285_BH7JJ5DRX2/Gathered_Results/Database/22M81472_fusion_check.csv ETV6-NTRK3 True
+/Output/results/220729_A00748_0285_BH7JJ5DRX2/Gathered_Results/Database/22M81472_fusion_check.csv FGFR3-BAIAP2L1 True
+/Output/results/220729_A00748_0285_BH7JJ5DRX2/Gathered_Results/Database/22M81472_fusion_check.csv FGFR3-TACC3 True
+/Output/results/220729_A00748_0285_BH7JJ5DRX2/Gathered_Results/Database/22M81472_fusion_check.csv KIF5B-RET True
+/Output/results/220729_A00748_0285_BH7JJ5DRX2/Gathered_Results/Database/22M81472_fusion_check.csv LMNA-NTRK1 True
+/Output/results/220729_A00748_0285_BH7JJ5DRX2/Gathered_Results/Database/22M81472_fusion_check.csv MET True
+/Output/results/220729_A00748_0285_BH7JJ5DRX2/Gathered_Results/Database/22M81472_fusion_check.csv NCOA4-RET True
+/Output/results/220729_A00748_0285_BH7JJ5DRX2/Gathered_Results/Database/22M81472_fusion_check.csv AC016683.6;PAX8-PPARG True
+/Output/results/220729_A00748_0285_BH7JJ5DRX2/Gathered_Results/Database/22M81472_fusion_check.csv SLC34A2-ROS1;GOPC True
+/Output/results/220729_A00748_0285_BH7JJ5DRX2/Gathered_Results/Database/22M81472_fusion_check.csv SLC45A3-BRAF True
+/Output/results/220729_A00748_0285_BH7JJ5DRX2/Gathered_Results/Database/22M81472_fusion_check.csv TFG-NTRK1 True
+/Output/results/220729_A00748_0285_BH7JJ5DRX2/Gathered_Results/Database/22M81472_fusion_check.csv TMPRSS2-ERG True
+/Output/results/220729_A00748_0285_BH7JJ5DRX2/Gathered_Results/Database/22M81472_fusion_check.csv TPM3-NTRK1 True
+/Output/results/220729_A00748_0285_BH7JJ5DRX2/Gathered_Results/Database/22M81472_fusion_check.csv  False
+/Output/results/220704_A01771_0056_AH7K2KDRX2_orig/Gathered_Results/Database/22M81472_fusion_check.csv RNA Fusion False
+/Output/results/220704_A01771_0056_AH7K2KDRX2_orig/Gathered_Results/Database/22M81472_fusion_check.csv CCDC6-RET True
+/Output/results/220704_A01771_0056_AH7K2KDRX2_orig/Gathered_Results/Database/22M81472_fusion_check.csv CD74-ROS1;GOPC True
+/Output/results/220704_A01771_0056_AH7K2KDRX2_orig/Gathered_Results/Database/22M81472_fusion_check.csv EGFR True
+/Output/results/220704_A01771_0056_AH7K2KDRX2_orig/Gathered_Results/Database/22M81472_fusion_check.csv EGFR-SEPT14 True
+/Output/results/220704_A01771_0056_AH7K2KDRX2_orig/Gathered_Results/Database/22M81472_fusion_check.csv EML4-ALK True
+/Output/results/220704_A01771_0056_AH7K2KDRX2_orig/Gathered_Results/Database/22M81472_fusion_check.csv ETV6-NTRK3 True
+/Output/results/220704_A01771_0056_AH7K2KDRX2_orig/Gathered_Results/Database/22M81472_fusion_check.csv FGFR3-BAIAP2L1 True
+/Output/results/220704_A01771_0056_AH7K2KDRX2_orig/Gathered_Results/Database/22M81472_fusion_check.csv FGFR3-TACC3 True
+/Output/results/220704_A01771_0056_AH7K2KDRX2_orig/Gathered_Results/Database/22M81472_fusion_check.csv KIF5B-RET True
+/Output/results/220704_A01771_0056_AH7K2KDRX2_orig/Gathered_Results/Database/22M81472_fusion_check.csv LMNA-NTRK1 True
+/Output/results/220704_A01771_0056_AH7K2KDRX2_orig/Gathered_Results/Database/22M81472_fusion_check.csv MET True
+/Output/results/220704_A01771_0056_AH7K2KDRX2_orig/Gathered_Results/Database/22M81472_fusion_check.csv NCOA4-RET True
+/Output/results/220704_A01771_0056_AH7K2KDRX2_orig/Gathered_Results/Database/22M81472_fusion_check.csv AC016683.6;PAX8-PPARG True
+/Output/results/220704_A01771_0056_AH7K2KDRX2_orig/Gathered_Results/Database/22M81472_fusion_check.csv SLC34A2-ROS1;GOPC True
+/Output/results/220704_A01771_0056_AH7K2KDRX2_orig/Gathered_Results/Database/22M81472_fusion_check.csv SLC45A3-BRAF True
+/Output/results/220704_A01771_0056_AH7K2KDRX2_orig/Gathered_Results/Database/22M81472_fusion_check.csv TFG-NTRK1 True
+/Output/results/220704_A01771_0056_AH7K2KDRX2_orig/Gathered_Results/Database/22M81472_fusion_check.csv TMPRSS2-ERG True
+/Output/results/220704_A01771_0056_AH7K2KDRX2_orig/Gathered_Results/Database/22M81472_fusion_check.csv TPM3-NTRK1 True
+/Output/results/220704_A01771_0056_AH7K2KDRX2_orig/Gathered_Results/Database/22M81472_fusion_check.csv  False
+/Output/results/220914_A01771_0081_BHJ2F2DRX2_orig/Gathered_Results/Database/22M81472_fusion_check.csv RNA Fusion False
+/Output/results/220914_A01771_0081_BHJ2F2DRX2_orig/Gathered_Results/Database/22M81472_fusion_check.csv CCDC6-RET True
+/Output/results/220914_A01771_0081_BHJ2F2DRX2_orig/Gathered_Results/Database/22M81472_fusion_check.csv CD74-ROS1;GOPC True
+/Output/results/220914_A01771_0081_BHJ2F2DRX2_orig/Gathered_Results/Database/22M81472_fusion_check.csv EGFR True
+/Output/results/220914_A01771_0081_BHJ2F2DRX2_orig/Gathered_Results/Database/22M81472_fusion_check.csv EGFR-SEPT14 True
+/Output/results/220914_A01771_0081_BHJ2F2DRX2_orig/Gathered_Results/Database/22M81472_fusion_check.csv EML4-ALK True
+/Output/results/220914_A01771_0081_BHJ2F2DRX2_orig/Gathered_Results/Database/22M81472_fusion_check.csv ETV6-NTRK3 True
+/Output/results/220914_A01771_0081_BHJ2F2DRX2_orig/Gathered_Results/Database/22M81472_fusion_check.csv FGFR3-BAIAP2L1 True
+/Output/results/220914_A01771_0081_BHJ2F2DRX2_orig/Gathered_Results/Database/22M81472_fusion_check.csv FGFR3-TACC3 True
+/Output/results/220914_A01771_0081_BHJ2F2DRX2_orig/Gathered_Results/Database/22M81472_fusion_check.csv KIF5B-RET True
+/Output/results/220914_A01771_0081_BHJ2F2DRX2_orig/Gathered_Results/Database/22M81472_fusion_check.csv LMNA-NTRK1 True
+/Output/results/220914_A01771_0081_BHJ2F2DRX2_orig/Gathered_Results/Database/22M81472_fusion_check.csv MET True
+/Output/results/220914_A01771_0081_BHJ2F2DRX2_orig/Gathered_Results/Database/22M81472_fusion_check.csv NCOA4-RET True
+/Output/results/220914_A01771_0081_BHJ2F2DRX2_orig/Gathered_Results/Database/22M81472_fusion_check.csv AC016683.6;PAX8-PPARG True
+/Output/results/220914_A01771_0081_BHJ2F2DRX2_orig/Gathered_Results/Database/22M81472_fusion_check.csv SLC34A2-ROS1;GOPC True
+/Output/results/220914_A01771_0081_BHJ2F2DRX2_orig/Gathered_Results/Database/22M81472_fusion_check.csv SLC45A3-BRAF True
+/Output/results/220914_A01771_0081_BHJ2F2DRX2_orig/Gathered_Results/Database/22M81472_fusion_check.csv TFG-NTRK1 True
+/Output/results/220914_A01771_0081_BHJ2F2DRX2_orig/Gathered_Results/Database/22M81472_fusion_check.csv TMPRSS2-ERG True
+/Output/results/220914_A01771_0081_BHJ2F2DRX2_orig/Gathered_Results/Database/22M81472_fusion_check.csv TPM3-NTRK1 True
+/Output/results/220914_A01771_0081_BHJ2F2DRX2_orig/Gathered_Results/Database/22M81472_fusion_check.csv  False
+/Output/results/221012_A01771_0101_BHLM3GDRX2/Gathered_Results/Database/22M82583_fusion_check.csv RNA Fusion False
+/Output/results/221012_A01771_0101_BHLM3GDRX2/Gathered_Results/Database/22M82583_fusion_check.csv CCDC6-RET True
+/Output/results/221012_A01771_0101_BHLM3GDRX2/Gathered_Results/Database/22M82583_fusion_check.csv CD74-ROS1;GOPC True
+/Output/results/221012_A01771_0101_BHLM3GDRX2/Gathered_Results/Database/22M82583_fusion_check.csv EGFR True
+/Output/results/221012_A01771_0101_BHLM3GDRX2/Gathered_Results/Database/22M82583_fusion_check.csv EGFR-SEPT14 True
+/Output/results/221012_A01771_0101_BHLM3GDRX2/Gathered_Results/Database/22M82583_fusion_check.csv EML4-ALK True
+/Output/results/221012_A01771_0101_BHLM3GDRX2/Gathered_Results/Database/22M82583_fusion_check.csv ETV6-NTRK3 True
+/Output/results/221012_A01771_0101_BHLM3GDRX2/Gathered_Results/Database/22M82583_fusion_check.csv FGFR3-BAIAP2L1 True
+/Output/results/221012_A01771_0101_BHLM3GDRX2/Gathered_Results/Database/22M82583_fusion_check.csv FGFR3-TACC3 True
+/Output/results/221012_A01771_0101_BHLM3GDRX2/Gathered_Results/Database/22M82583_fusion_check.csv KIF5B-RET True
+/Output/results/221012_A01771_0101_BHLM3GDRX2/Gathered_Results/Database/22M82583_fusion_check.csv LMNA-NTRK1 True
+/Output/results/221012_A01771_0101_BHLM3GDRX2/Gathered_Results/Database/22M82583_fusion_check.csv MET True
+/Output/results/221012_A01771_0101_BHLM3GDRX2/Gathered_Results/Database/22M82583_fusion_check.csv NCOA4-RET True
+/Output/results/221012_A01771_0101_BHLM3GDRX2/Gathered_Results/Database/22M82583_fusion_check.csv AC016683.6;PAX8-PPARG True
+/Output/results/221012_A01771_0101_BHLM3GDRX2/Gathered_Results/Database/22M82583_fusion_check.csv SLC34A2-ROS1;GOPC True
+/Output/results/221012_A01771_0101_BHLM3GDRX2/Gathered_Results/Database/22M82583_fusion_check.csv SLC45A3-BRAF True
+/Output/results/221012_A01771_0101_BHLM3GDRX2/Gathered_Results/Database/22M82583_fusion_check.csv TFG-NTRK1 True
+/Output/results/221012_A01771_0101_BHLM3GDRX2/Gathered_Results/Database/22M82583_fusion_check.csv TMPRSS2-ERG True
+/Output/results/221012_A01771_0101_BHLM3GDRX2/Gathered_Results/Database/22M82583_fusion_check.csv TPM3-NTRK1 True
+/Output/results/221012_A01771_0101_BHLM3GDRX2/Gathered_Results/Database/22M82583_fusion_check.csv  False
+/Output/results/220926_A01771_0088_AHLKV5DRX2/Gathered_Results/Database/22M82583_fusion_check.csv RNA Fusion False
+/Output/results/220926_A01771_0088_AHLKV5DRX2/Gathered_Results/Database/22M82583_fusion_check.csv CCDC6-RET True
+/Output/results/220926_A01771_0088_AHLKV5DRX2/Gathered_Results/Database/22M82583_fusion_check.csv CD74-ROS1;GOPC True
+/Output/results/220926_A01771_0088_AHLKV5DRX2/Gathered_Results/Database/22M82583_fusion_check.csv EGFR True
+/Output/results/220926_A01771_0088_AHLKV5DRX2/Gathered_Results/Database/22M82583_fusion_check.csv EGFR-SEPT14 True
+/Output/results/220926_A01771_0088_AHLKV5DRX2/Gathered_Results/Database/22M82583_fusion_check.csv EML4-ALK True
+/Output/results/220926_A01771_0088_AHLKV5DRX2/Gathered_Results/Database/22M82583_fusion_check.csv ETV6-NTRK3 True
+/Output/results/220926_A01771_0088_AHLKV5DRX2/Gathered_Results/Database/22M82583_fusion_check.csv FGFR3-BAIAP2L1 True
+/Output/results/220926_A01771_0088_AHLKV5DRX2/Gathered_Results/Database/22M82583_fusion_check.csv FGFR3-TACC3 True
+/Output/results/220926_A01771_0088_AHLKV5DRX2/Gathered_Results/Database/22M82583_fusion_check.csv KIF5B-RET True
+/Output/results/220926_A01771_0088_AHLKV5DRX2/Gathered_Results/Database/22M82583_fusion_check.csv LMNA-NTRK1 True
+/Output/results/220926_A01771_0088_AHLKV5DRX2/Gathered_Results/Database/22M82583_fusion_check.csv MET True
+/Output/results/220926_A01771_0088_AHLKV5DRX2/Gathered_Results/Database/22M82583_fusion_check.csv NCOA4-RET True
+/Output/results/220926_A01771_0088_AHLKV5DRX2/Gathered_Results/Database/22M82583_fusion_check.csv AC016683.6;PAX8-PPARG True
+/Output/results/220926_A01771_0088_AHLKV5DRX2/Gathered_Results/Database/22M82583_fusion_check.csv SLC34A2-ROS1;GOPC True
+/Output/results/220926_A01771_0088_AHLKV5DRX2/Gathered_Results/Database/22M82583_fusion_check.csv SLC45A3-BRAF True
+/Output/results/220926_A01771_0088_AHLKV5DRX2/Gathered_Results/Database/22M82583_fusion_check.csv TFG-NTRK1 True
+/Output/results/220926_A01771_0088_AHLKV5DRX2/Gathered_Results/Database/22M82583_fusion_check.csv TMPRSS2-ERG True
+/Output/results/220926_A01771_0088_AHLKV5DRX2/Gathered_Results/Database/22M82583_fusion_check.csv TPM3-NTRK1 True
+/Output/results/220926_A01771_0088_AHLKV5DRX2/Gathered_Results/Database/22M82583_fusion_check.csv  False
+/Output/results/220928_A01771_0090_BHLLGHDRX2/Gathered_Results/Database/22M82583_fusion_check.csv RNA Fusion False
+/Output/results/220928_A01771_0090_BHLLGHDRX2/Gathered_Results/Database/22M82583_fusion_check.csv CCDC6-RET True
+/Output/results/220928_A01771_0090_BHLLGHDRX2/Gathered_Results/Database/22M82583_fusion_check.csv CD74-ROS1;GOPC True
+/Output/results/220928_A01771_0090_BHLLGHDRX2/Gathered_Results/Database/22M82583_fusion_check.csv EGFR True
+/Output/results/220928_A01771_0090_BHLLGHDRX2/Gathered_Results/Database/22M82583_fusion_check.csv EGFR-SEPT14 True
+/Output/results/220928_A01771_0090_BHLLGHDRX2/Gathered_Results/Database/22M82583_fusion_check.csv EML4-ALK True
+/Output/results/220928_A01771_0090_BHLLGHDRX2/Gathered_Results/Database/22M82583_fusion_check.csv ETV6-NTRK3 True
+/Output/results/220928_A01771_0090_BHLLGHDRX2/Gathered_Results/Database/22M82583_fusion_check.csv FGFR3-BAIAP2L1 True
+/Output/results/220928_A01771_0090_BHLLGHDRX2/Gathered_Results/Database/22M82583_fusion_check.csv FGFR3-TACC3 True
+/Output/results/220928_A01771_0090_BHLLGHDRX2/Gathered_Results/Database/22M82583_fusion_check.csv KIF5B-RET True
+/Output/results/220928_A01771_0090_BHLLGHDRX2/Gathered_Results/Database/22M82583_fusion_check.csv LMNA-NTRK1 True
+/Output/results/220928_A01771_0090_BHLLGHDRX2/Gathered_Results/Database/22M82583_fusion_check.csv MET True
+/Output/results/220928_A01771_0090_BHLLGHDRX2/Gathered_Results/Database/22M82583_fusion_check.csv NCOA4-RET True
+/Output/results/220928_A01771_0090_BHLLGHDRX2/Gathered_Results/Database/22M82583_fusion_check.csv AC016683.6;PAX8-PPARG True
+/Output/results/220928_A01771_0090_BHLLGHDRX2/Gathered_Results/Database/22M82583_fusion_check.csv SLC34A2-ROS1;GOPC True
+/Output/results/220928_A01771_0090_BHLLGHDRX2/Gathered_Results/Database/22M82583_fusion_check.csv SLC45A3-BRAF True
+/Output/results/220928_A01771_0090_BHLLGHDRX2/Gathered_Results/Database/22M82583_fusion_check.csv TFG-NTRK1 True
+/Output/results/220928_A01771_0090_BHLLGHDRX2/Gathered_Results/Database/22M82583_fusion_check.csv TMPRSS2-ERG True
+/Output/results/220928_A01771_0090_BHLLGHDRX2/Gathered_Results/Database/22M82583_fusion_check.csv TPM3-NTRK1 True
+/Output/results/220928_A01771_0090_BHLLGHDRX2/Gathered_Results/Database/22M82583_fusion_check.csv  False
+/Output/results/221109_A01771_0114_AHNNLGDRX2/Gathered_Results/Database/22M82583_fusion_check.csv RNA Fusion False
+/Output/results/221109_A01771_0114_AHNNLGDRX2/Gathered_Results/Database/22M82583_fusion_check.csv CCDC6-RET True
+/Output/results/221109_A01771_0114_AHNNLGDRX2/Gathered_Results/Database/22M82583_fusion_check.csv CD74-ROS1;GOPC True
+/Output/results/221109_A01771_0114_AHNNLGDRX2/Gathered_Results/Database/22M82583_fusion_check.csv EGFR True
+/Output/results/221109_A01771_0114_AHNNLGDRX2/Gathered_Results/Database/22M82583_fusion_check.csv EGFR-SEPT14 True
+/Output/results/221109_A01771_0114_AHNNLGDRX2/Gathered_Results/Database/22M82583_fusion_check.csv EML4-ALK True
+/Output/results/221109_A01771_0114_AHNNLGDRX2/Gathered_Results/Database/22M82583_fusion_check.csv ETV6-NTRK3 True
+/Output/results/221109_A01771_0114_AHNNLGDRX2/Gathered_Results/Database/22M82583_fusion_check.csv FGFR3-BAIAP2L1 True
+/Output/results/221109_A01771_0114_AHNNLGDRX2/Gathered_Results/Database/22M82583_fusion_check.csv FGFR3-TACC3 True
+/Output/results/221109_A01771_0114_AHNNLGDRX2/Gathered_Results/Database/22M82583_fusion_check.csv KIF5B-RET True
+/Output/results/221109_A01771_0114_AHNNLGDRX2/Gathered_Results/Database/22M82583_fusion_check.csv LMNA-NTRK1 True
+/Output/results/221109_A01771_0114_AHNNLGDRX2/Gathered_Results/Database/22M82583_fusion_check.csv MET True
+/Output/results/221109_A01771_0114_AHNNLGDRX2/Gathered_Results/Database/22M82583_fusion_check.csv NCOA4-RET True
+/Output/results/221109_A01771_0114_AHNNLGDRX2/Gathered_Results/Database/22M82583_fusion_check.csv AC016683.6;PAX8-PPARG True
+/Output/results/221109_A01771_0114_AHNNLGDRX2/Gathered_Results/Database/22M82583_fusion_check.csv SLC34A2-ROS1;GOPC True
+/Output/results/221109_A01771_0114_AHNNLGDRX2/Gathered_Results/Database/22M82583_fusion_check.csv SLC45A3-BRAF True
+/Output/results/221109_A01771_0114_AHNNLGDRX2/Gathered_Results/Database/22M82583_fusion_check.csv TFG-NTRK1 True
+/Output/results/221109_A01771_0114_AHNNLGDRX2/Gathered_Results/Database/22M82583_fusion_check.csv TMPRSS2-ERG True
+/Output/results/221109_A01771_0114_AHNNLGDRX2/Gathered_Results/Database/22M82583_fusion_check.csv TPM3-NTRK1 True
+/Output/results/221109_A01771_0114_AHNNLGDRX2/Gathered_Results/Database/22M82583_fusion_check.csv  False
