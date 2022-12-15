@@ -1,13 +1,13 @@
 import pandas as pd
 from glob import glob
 
-#
+
 # Create dictionary of gene and position for the reference standard file
 with open("RS_rna.txt") as rna:
         rna_dict = {}
         for line in rna:
                 x = line.strip().split('\t')
-                rna_dict[x[0]] = None
+                rna_dict[x[0]] = None  #0 is gene fusion
 #print(rna_dict)
 
 
@@ -22,7 +22,7 @@ for sample in all_samples:
                 sample_dict = {}
                 for line in file: 
                         x = line.split(',')
-               	        sample_dict[x[0]] = None        # 2 is variant, 0 is gene 
+               	        sample_dict[x[0]] = None        #0 is gene fusion 
                         #print(sample_dict)
 
 
@@ -34,6 +34,4 @@ for sample in all_samples:
                 else:
                     print(sample, key, "False", file = output_rna)
                                          
-#                        final_matches = {key: value for key, value in rna_dict.items() if (key, value) in sample_dict.items()}
-#                        print(sample, final_matches)
 
