@@ -6,7 +6,7 @@ hd730_dict = {}
 with open("TruQ1_RS_HD730_crm.txt") as hd730:
         for line in hd730:
                 x = line.split('\t')
-                hd730_dict[x[3]] = None		#3 is variant, 0 is gene
+                hd730_dict[x[3]] = None		#3 is variant
                 #print(hd730_dict)
 
 
@@ -24,14 +24,20 @@ for sample in hd730_samples:
                         hd730_samples_dict[x[1]] = x[2]   # 1 is variant, 2 is vaf
                         #print(hd730_samples_dict)
 
-# Comparing dictionaries with the reference standard dictionary
-			# Comparing keys and values
-        #with open("crm_dna_hd730.txt", "a") as output_crm_dna_hd730:       
+			# Splitting path into sample ID and run ID
+                        split_sample_path = sample.split("/")
+                        split_sample_id = split_sample_path[6].split("_")
+
+	# Comparing dictionaries with the reference standard dictionary
+        #with open("crm_dna_hd730.txt", "a") as output_crm_dna_hd730:
+                sample_id = split_sample_id[4]
+                run_id = split_sample_path[3]
                 for key in hd730_dict.keys():
+                    #worksheet = subprocess.run([f'grep {sample_id} /data/archive/*/{run_id}/SampleSheet.csv | cut -f  -d ","'], shell=True, capture_output=True)		
                     if key in hd730_samples_dict.keys():
-                        print(sample, key, hd730_samples_dict[key], "True") # file = output_crm_dna_hd730)
+                        print(run_id, sample_id, key, hd730_samples_dict[key], "True") # file = output_crm_dna_hd730)
                     else:
-                        print(sample, key, '', "False")# file = output_crm_dna_hd730)
+                        print(run_id, sample_id, key, '', "False")# file = output_crm_dna_hd730)
 
 
 # HD728 samples were not run
@@ -58,11 +64,17 @@ for sample in hd728_samples:
                         hd728_samples_dict[x[1]] = x[5]         # 2 is variant, 5 is vaf
                         #print(sample, hd728_samples_dict)
 
+                        # Splitting up path to get sample ID and run ID
+                        split_sample_path = sample.split("/")
+                        split_sample_id = split_sample_path[6].split("_")
+
                         # Comparing both keys and values
        # with open("crm_dna_hd728.txt", "a") as output_crm_dna_hd728:     
+                        sample_id = split_sample_id[4]
+                        run_id = split_sample_path[3]
                 for key in hd728_dict.keys():
                     if key in hd728_samples_dict.keys():
-                        print(sample, key, hd728_samples_dict[key], "True")# file = output_crm_dna_hd728)
+                        print(run_id, sample_id, key, hd728_samples_dict[key], "True")# file = output_crm_dna_hd728)
                     else:
-                        print(sample, key, '', "False")# file = output_crm_dna_hd728)
+                        print(run_id, sample_id, key, '', "False")# file = output_crm_dna_hd728)
 

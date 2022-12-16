@@ -1,6 +1,6 @@
 import pandas as pd
 from glob import glob
-
+import subprocess
 
 # Create dictionary of gene and position for the reference standard file
 with open("RS_rna.txt") as rna:
@@ -25,13 +25,19 @@ for sample in all_samples:
                	        sample_dict[x[0]] = None        #0 is gene fusion 
                         #print(sample_dict)
 
+                        # Splitting up path to get sample ID and run ID
+                        split_sample_path = sample.split("/")
+                        split_sample_id = split_sample_path[6].split("_")
 
-# Comparing dictionaries with the reference standard dictionary
-        with open("rna.txt", "a") as output_rna:
-            for key, value in rna_dict.items():
-                if (key, value) in sample_dict.items():
-                    print(sample, key, "True", file = output_rna)
-                else:
-                    print(sample, key, "False", file = output_rna)
+        # Comparing dictionaries with the reference standard dictionary
+        #with open("rna.txt", "a") as output_rna:
+                sample_id = split_sample_id[0]
+                run_id = split_sample_path[3]
+                for key, value in rna_dict.items():
+                    worksheet = subprocess.run([f'grep {sample_id} /data/archive/*/{run_id}/SampleSheet.csv | cut -f 3 -d ","'], shell=True, capture_output=True)
+                    if (key, value) in sample_dict.items():
+                        print(run_id, worksheet.stdout.rstrip(), sample_id, key, "True")# file = output_rna)
+                    else:
+                        print(run_id, worksheet.stdout.rstrip(), sample_id key, "False")# file = output_rna)
                                          
 
