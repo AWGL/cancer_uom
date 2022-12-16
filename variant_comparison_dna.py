@@ -4,7 +4,7 @@ from glob import glob
 import subprocess
 import os
 
-# Create dictionary of gene and position for the reference standard file hd730
+# Create dictionary of variant positions for the reference standard file hd730
 hd730_dict = {}
 with open("TruQ1_HD730.txt") as hd730:
 	for line in hd730:
