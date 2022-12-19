@@ -4,7 +4,7 @@ from glob import glob
 import subprocess
 import os
 
-# Create dictionary of gene and position for the reference standard file hd730
+# Create dictionary of variant positions for the reference standard file hd730
 hd730_dict = {}
 with open("TruQ1_HD730.txt") as hd730:
 	for line in hd730:
@@ -14,12 +14,12 @@ with open("TruQ1_HD730.txt") as hd730:
 		#print(hd730_dict)
 
 
-# Get all files into list  
+# Get all files containing uom sample IDs into list  
 hd730_samples = glob('/Output/results/*/Gathered_Results/Database/21M70050_variants.tsv') + glob('/Output/results/*/Gathered_Results/Database/22M12181_variants.tsv') + glob('/Output/results/*/Gathered_Results/Database/22M06894_variants.tsv')
 #print(hd730_samples)
 
 
-# List all files in dictionary 
+# List all files in dictionary (not needed)
 #def convert_dict(a):
 #	init = iter(hd730_samples)
 #	res_dct = dict(zip(init,init))
@@ -27,7 +27,7 @@ hd730_samples = glob('/Output/results/*/Gathered_Results/Database/21M70050_varia
 #print(convert_dict(hd730_samples))
 
 
-# Put contents of each file into separate dictionaries
+# Put contents of each tsv file into separate dictionaries
 for sample in hd730_samples:
 	with open(sample) as file:
 		hd730_samples_dict = {}
@@ -37,12 +37,12 @@ for sample in hd730_samples:
 			hd730_samples_dict[v] = x[5]               	#5 is vaf 
 			#print(hd730_samples_dict)
 			
-			# Splitting path into sample ID and run ID
+			# Splitting file path into sample ID and run ID for output
 			split_sample_path = sample.split("/") 
 			split_sample_id = split_sample_path[6].split("_")
 
-	# Comparing dictionaries with the reference standard dictionary
-	#with open("dna_hd730.txt", "a") as output_dna_hd730:
+	# Looking for matches between dictionaries with uom samples and the reference standard dictionary
+	#with open("dna_hd730.txt", "a") as output_dna_hd730:    # Creating a text file output
 	sample_id = split_sample_id[0]
 	run_id = split_sample_path[3]	
 	for key in hd730_dict.keys():
@@ -54,7 +54,7 @@ for sample in hd730_samples:
 
 	
 
-
+## Do the same for the hd728 samples 
 # Create dictionary of gene and position for the reference standard file hd728
 hd728_dict = {}
 with open("TruQ1_RS_HD728.txt") as hd728:
@@ -70,7 +70,7 @@ hd728_samples =  glob('/Output/results/*/Gathered_Results/Database/22M12180_vari
 #print(hd728_samples)
 
 
-# Put contents of each file into separate dictionaries
+# Put contents of each file into separate dictionaries to look for matching variants 
 for sample in hd728_samples:
         with open(sample) as file:
                 hd728_samples_dict = {}
