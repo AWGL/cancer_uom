@@ -1,2 +1,2 @@
-# cancer_uom
-Uncertainty of measurement calculations for cancer NGS
+# Cancer Uncertainty of Measurement
+Uncertainty of measurement calculations for cancer NGS assays
