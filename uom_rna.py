@@ -6,9 +6,9 @@ import subprocess
 with open("RS_rna.txt") as rna:
         rna_dict = {}
         for line in rna:
-                x = line.strip().split('\t')
-                rna_dict[x[0]] = None  #0 is gene fusion
-#print(rna_dict)
+                x = line.strip().split('\t')       # Remove any spaces and split lines by tab
+                rna_dict[x[0]] = None              # 0 is gene fusion
+                #print(rna_dict)
 
 
 # Get all files into list 
@@ -30,10 +30,11 @@ for sample in all_samples:
                         split_sample_id = split_sample_path[6].split("_")
 
         # Comparing dictionaries with the reference standard dictionary
-        #with open("rna.txt", "a") as output_rna:
+        with open("rna.txt", "a") as output_rna:        # Creates output into text file
                 sample_id = split_sample_id[0]
                 run_id = split_sample_path[3]
-                for key, value in rna_dict.items():
+                for key, value in rna_dict.items():     # Key is gene fusion
+                    # Adding in worksheet ID
                     worksheet = subprocess.run([f'grep {sample_id} /data/archive/*/{run_id}/SampleSheet.csv | cut -f 3 -d ","'], shell=True, capture_output=True)
                     if (key, value) in sample_dict.items():
                         print(run_id, worksheet.stdout.rstrip(), sample_id, key, "True")# file = output_rna)
