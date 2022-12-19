@@ -37,8 +37,8 @@ for sample in all_samples:
                     # Adding in worksheet ID
                     worksheet = subprocess.run([f'grep {sample_id} /data/archive/*/{run_id}/SampleSheet.csv | cut -f 3 -d ","'], shell=True, capture_output=True)
                     if (key, value) in sample_dict.items():
-                        print(run_id, worksheet.stdout.rstrip(), sample_id, key, "True")# file = output_rna)
+                        print(run_id, worksheet.stdout.rstrip(), sample_id, key, "True", file = output_rna)    # File command will convert output to text file
                     else:
-                        print(run_id, worksheet.stdout.rstrip(), sample_id key, "False")# file = output_rna)
+                        print(run_id, worksheet.stdout.rstrip(), sample_id key, "False", file = output_rna)    # File command will convert output to text file
                                          
 
