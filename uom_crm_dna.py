@@ -31,16 +31,16 @@ for sample in hd730_samples:
                         split_sample_id = split_sample_path[6].split("_")
 
 	# Comparing dictionaries with the reference standard dictionary
-        with open("uom_crm_dna_hd730.txt", "a") as output_crm_dna_hd730:
+        with open("uom_crm_dna_hd730.txt", "a") as output_crm_dna_hd730:    # Convert output to text file
                 sample_id = split_sample_id[4]
                 run_id = split_sample_path[3]
                 for key in hd730_dict.keys():       # Key is variant position
 		    # Adding in worksheet ID
                     worksheet = subprocess.run([f'grep {sample_id} /data/archive/*/{run_id}/SampleSheet.csv | cut -f 2 -d ","'], shell=True, capture_output=True)
                     if key in hd730_samples_dict.keys():
-                        print(run_id, worksheet.stdout.rstrip(), sample_id, key, hd730_samples_dict[key], "True", file = output_crm_dna_hd730)
+                        print(run_id, worksheet.stdout.rstrip(), sample_id, key, hd730_samples_dict[key], "True", file = output_crm_dna_hd730)    # File command will convert output to text file
                     else:
-                        print(run_id, worksheet.stdout.rstrip(), sample_id, key, '', "False", file = output_crm_dna_hd730)
+                        print(run_id, worksheet.stdout.rstrip(), sample_id, key, '', "False", file = output_crm_dna_hd730)                        # File command will convert output to text file
 
 
 # HD728 samples were not run
