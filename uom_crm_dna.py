@@ -35,7 +35,7 @@ for sample in hd730_samples:
                 sample_id = split_sample_id[4]
                 run_id = split_sample_path[3]
                 for key in hd730_dict.keys():
-		    # adding in worksheet ID
+		    # Adding in worksheet ID
                     worksheet = subprocess.run([f'grep {sample_id} /data/archive/*/{run_id}/SampleSheet.csv | cut -f 2 -d ","'], shell=True, capture_output=True)
                     if key in hd730_samples_dict.keys():
                         print(run_id, worksheet.stdout.rstrip(), sample_id, key, hd730_samples_dict[key], "True", file = output_crm_dna_hd730)
