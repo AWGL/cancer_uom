@@ -8,7 +8,7 @@ hd730_dict = {}
 with open("TruQ1_HD730.txt") as hd730:
 	for line in hd730:
 		x = line.split('\t')
-		v = "chr" + x[3] + ":" + x[4] #concatenate position and base change
+		v = "chr" + x[3] + ":" + x[4]  #concatenate position and base change from RS file
 		hd730_dict[v] = None
 		#print(hd730_dict)
 
@@ -32,7 +32,7 @@ for sample in hd730_samples:
 		hd730_samples_dict = {}
 		for line in file:
 			x = line.split('\t') 				# Split the columns based on tabs
-			v = x[1] + ":" + x[2] + x[3] + ">" +  x[4] 	# Concatenate position and base change
+			v = x[1] + ":" + x[2] + x[3] + ">" +  x[4] 	# Concatenate position and base change from sample files
 			hd730_samples_dict[v] = x[5]               	#5 is vaf 
 			#print(hd730_samples_dict)
 			
@@ -45,6 +45,7 @@ for sample in hd730_samples:
 		sample_id = split_sample_id[0]
 		run_id = split_sample_path[3]
 		for key in hd730_dict.keys():
+			# Adding in worksheet ID
 			worksheet = subprocess.run([f'grep {sample_id} /data/archive/*/{run_id}/SampleSheet.csv | cut -f 3 -d ","'], shell=True, capture_output=True)
 			if key in hd730_samples_dict.keys():
 				print(run_id, worksheet.stdout.rstrip(), sample_id, key, hd730_samples_dict[key], "True", file = output_dna_hd730)
@@ -53,7 +54,7 @@ for sample in hd730_samples:
 
 	
 
-
+# This is the same process but for samples with hd728 RS
 # Create dictionary of gene and position for the reference standard file hd728
 hd728_dict = {}
 with open("TruQ1_RS_HD728.txt") as hd728:
