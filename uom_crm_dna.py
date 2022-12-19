@@ -34,7 +34,7 @@ for sample in hd730_samples:
         with open("uom_crm_dna_hd730.txt", "a") as output_crm_dna_hd730:
                 sample_id = split_sample_id[4]
                 run_id = split_sample_path[3]
-                for key in hd730_dict.keys():
+                for key in hd730_dict.keys():       # Key is variant position
 		    # Adding in worksheet ID
                     worksheet = subprocess.run([f'grep {sample_id} /data/archive/*/{run_id}/SampleSheet.csv | cut -f 2 -d ","'], shell=True, capture_output=True)
                     if key in hd730_samples_dict.keys():
