@@ -3,7 +3,7 @@ from glob import glob
 import subprocess
 
 # Create dictionary of gene and position for the reference standard file
-with open("RS_rna.txt") as rna:
+with open("reference_standards/RS_rna.txt") as rna:
         rna_dict = {}
         for line in rna:
                 x = line.strip().split('\t')
@@ -30,7 +30,7 @@ for sample in all_samples:
                         split_sample_id = split_sample_path[6].split("_")
 
         # Comparing dictionaries with the reference standard dictionary
-        #with open("rna.txt", "a") as output_rna:
+        #with open("UoM_results/rna.txt", "a") as output_rna:
                 sample_id = split_sample_id[0]
                 run_id = split_sample_path[3]
                 for key, value in rna_dict.items():
@@ -38,6 +38,6 @@ for sample in all_samples:
                     if (key, value) in sample_dict.items():
                         print(run_id, worksheet.stdout.rstrip(), sample_id, key, "True")# file = output_rna)
                     else:
-                        print(run_id, worksheet.stdout.rstrip(), sample_id key, "False")# file = output_rna)
+                        print(run_id, worksheet.stdout.rstrip(), sample_id, key, "False")# file = output_rna)
                                          
 
