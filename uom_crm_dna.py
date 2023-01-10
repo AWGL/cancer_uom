@@ -16,6 +16,7 @@ for sample in hd730_samples:
 			x = line.split('\t') # Split the columns based on tabs
 			hd730_samples_dict[x[1]] = x[2]   # 1 is variant, 2 is vaf
  			#print(hd730_samples_dict)
+
 	
 		# Put RS file contents into dictionary
 		hd730_dict = {}
@@ -25,9 +26,11 @@ for sample in hd730_samples:
 				#v = "chr" + x[3] + ":" + x[4] #concatenate position and base change
 				hd730_dict[x[3]] = float(x[6])
 
+
 			# Splitting paths of sample files  into sample ID and run ID
 			split_sample_path = sample.split("/")
 			split_sample_id = split_sample_path[6].split("_")
+
 
 	# Comparing dictionaries with the reference standard dictionary
  		#with open("uom_crm_dna_hd730.txt", "a") as output_crm_dna_hd730:
@@ -41,43 +44,3 @@ for sample in hd730_samples:
 				print(run_id, worksheet.stdout.rstrip(), sample_id, key, float(hd730_samples_dict[key]), value, (sigfig.round(difference, sigfigs=3)), (sigfig.round((difference/value)*100, sigfigs=3)), "True")# file = output_crm_dna_hd730)
 			else:
 				print(run_id, worksheet.stdout.rstrip(), sample_id, key, '', "n/a", "n/a", "n/a", "n/a", "False")# file = output_crm_dna_hd730)
-
-
-# HD728 samples were not run
-# Create dictionary of gene and position for the hd728 reference standard file
-#hd728_dict = {}
-#with open("TruQ1_RS_HD728_crm.txt") as hd728:
-#        for line in hd728:
-#                x = line.split('\t')
-#                hd728_dict[x[3]] = x[0]         #3 is variant, 0 is gene
-#               #print(hd728_dict)
-
-
-#Get all files into a list
-#hd728_samples = glob('/Output/results/*/NGHS-101X/22M12180/*_22M12180_VariantReport.txt') + glob('/Output/results/*/NGHS-101X/22M06893/*_22M06893_VariantReport.txt')+ glob('/Output/results/*/NGHS-101X/22M06896/*_22M06896_VariantReport.tsv')
-#print(hd728_samples)
-
-
-# Put contents of each file into separate dictionaries
-#for sample in hd728_samples:
- #       with open(sample) as file:
-  #              hd728_samples_dict = {}
-   #             for line in file:
-    #                    x = line.split('\t')    # Split the columns based on tabs
-     #                   hd728_samples_dict[x[1]] = x[5]         # 2 is variant, 5 is vaf
-      #                  #print(sample, hd728_samples_dict)
-#
- #                       # Splitting up path to get sample ID and run ID
-  #                      split_sample_path = sample.split("/")
-   #                     split_sample_id = split_sample_path[6].split("_")
-#
- #                       # Comparing both keys and values
-  #     # with open("crm_dna_hd728.txt", "a") as output_crm_dna_hd728:     
-   #                     sample_id = split_sample_id[4]
-    #                    run_id = split_sample_path[3]
-     #           for key in hd728_dict.keys():
-      #              if key in hd728_samples_dict.keys():
-       #                 print(run_id, sample_id, key, hd728_samples_dict[key], "True")# file = output_crm_dna_hd728)
-        #            else:
-         #               print(run_id, sample_id, key, '', "False")# file = output_crm_dna_hd728)
-

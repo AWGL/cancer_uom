@@ -1,85 +1,89 @@
-import pandas as pd
 from glob import glob
 import subprocess
-import os
 import sigfig
-
-# Create dictionary of gene and position for the reference standard file hd730
-#hd730_dict = {}
-#with open("TruQ1_HD730.txt") as hd730:
-#	for line in hd730:
-#		x = line.split('\t')
-#		v = "chr" + x[3] + ":" + x[4] #concatenate position and base change
-#		hd730_dict[v] = None
-#		#print(hd730_dict)
+import yaml
+import argparse 
+import datetime
+from dateutil.relativedelta import relativedelta
 
 
-# Get all files into list  
-hd730_samples = glob('/Output/results/*/Gathered_Results/Database/21M70050_variants.tsv') + glob('/Output/results/*/Gathered_Results/Database/22M12181_variants.tsv') + glob('/Output/results/*/Gathered_Results/Database/22M06894_variants.tsv')
-#print(hd730_samples)
+##EXAMPLE FUNCTION##
+def display_discounted_price(instrument, discount):
+  full_price = instrument_prices[instrument]
+  discount_percentage = discount / 100
+  discounted_price = full_price - (full_price * discount_percentage)
+  print("The instrument's discounted price is: " + str(discounted_price))
+
+instrument = 'Clarinet' #this could be the dictionary or a list, arguments need to be specified!!
+discount = '20'
+
+# Load uncertainty of measurement sample IDs and their corresponding reference standard into a dictionary
 
 
-# List all files in dictionary 
-#def convert_dict(a):
-#	init = iter(hd730_samples)
-#	res_dct = dict(zip(init,init))
-#	return res_dct
-#print(convert_dict(hd730_samples))
+##ORIGINAL CODE##
+with open("config_files/hd730_samples.yaml") as files:
+	hd730_samples = yaml.load(files, Loader=yaml.FullLoader)
 
 
-# Put contents of each file into separate dictionaries
-for sample in hd730_samples:
-	with open(sample) as file:
-		hd730_samples_dict = {}
-		for line in file:
-			x = line.split('\t') 				# Split the columns based on tabs
-			v = x[1] + ":" + x[2] + x[3] + ">" +  x[4] 	# Concatenate position and base change
-			hd730_samples_dict[v] = x[5]               	#5 is vaf 
-			#print(hd730_samples_dict)
-	 	
-		hd730_dict = {}
-		with open("TruQ1_HD730.txt") as hd730:
-			for line in hd730:
-				x = line.split('\t')
-				v = "chr" + x[3] + ":" + x[4] #concatenate position and base change
-				hd730_dict[v] = float(x[7])
-				# print(hd730_dict)
-			
-				# Splitting path into sample ID and run ID
-				split_sample_path = sample.split("/") 
-				split_sample_id = split_sample_path[6].split("_")
+# Get all sample filepaths into list
 
-	 #		with open("uom_dna_hd730.txt", "a") as output_dna_hd730:
-			sample_id = split_sample_id[0]
-			run_id = split_sample_path[3]
-			for key, value in hd730_dict.items():
-				worksheet = subprocess.run([f'grep {sample_id} /data/archive/*/{run_id}/SampleSheet.csv | cut -f 3 -d ","'], shell=True, capture_output=True)
-				if key in hd730_samples_dict.keys():
-					difference = float(hd730_samples_dict[key]) - value
-					# Key is variant position, hd730_samples_dict[key] is sample vaf, difference is difference between expected and observed vaf, value is RS value, difference/value is % difference
-					print(run_id, worksheet.stdout.rstrip(), sample_id, key, float(hd730_samples_dict[key]), value, (sigfig.round(difference, sigfigs=3)), (sigfig.round((difference/value)*100, sigfigs=3)), "True")# file = output_dna_hd7$
-				else:
- 					print(run_id, worksheet.stdout.rstrip(), sample_id, key, '', "n/a", "n/a", "n/a", "n/a", "False")# file = output_dna_hd730)
+	filepaths = []
+	for sample in hd730_samples:
+		filepaths += glob(f'/Output/results/*/Gathered_Results/Database/{sample}_variants.tsv')
 	
 
 
-# Create dictionary of gene and position for the reference standard file hd728
-#hd728_dict = {}
-#with open("TruQ1_RS_HD728.txt") as hd728:
- #       for line in hd728:
-  #              x = line.split('\t')
-	#	v = "chr" + x[3] + ":" + x[4]
-    #            hd728_dict[v] = x[0]         	#0 is gene
-                #print(hd728_dict)
+# Put contents of each file into separate dictionaries 
+#def files(comparison):
+
+	for sample in filepaths:
+		with open(sample) as file:
+			hd730_samples_dict = {}
+			for line in file:
+				x = line.split('\t') 				# Split the columns based on tabs
+				v = x[1] + ":" + x[2] + x[3] + ">" +  x[4] 	# Concatenate position and base change
+				hd730_samples_dict[v] = x[5]               	#5 is vaf 
+	 	
+			hd730_dict = {}
+			with open("reference_standards/TruQ1_RS_HD730.txt") as hd730:	# path where reference standard file is (for comparison)
+				for line in hd730:
+					x = line.split('\t')
+					v = "chr" + x[3] + ":" + x[4]		# Concatenate position and base change
+					hd730_dict[v] = float(x[7])
+					# print(hd730_dict)
+			
+					# Splitting path into sample ID and run ID
+					split_sample_path = sample.split("/") 
+					split_sample_id = split_sample_path[6].split("_")
+
+				# Comparing sample files to reference standard files to find matches
+	 			#with open("UoM_results/uom_dna_hd730.txt", "a") as output_dna_hd730:	# Creates output of analyis as text file
+				sample_id = split_sample_id[0]
+				run_id = split_sample_path[3]
+				for key, value in hd730_dict.items():
+					worksheet = subprocess.run([f'grep {sample_id} /data/archive/*/{run_id}/SampleSheet.csv | cut -f 3 -d ","'], shell=True, capture_output=True)
+					if key in hd730_samples_dict.keys():
+						difference = float(hd730_samples_dict[key]) - value
+						# Key is variant position, hd730_samples_dict[key] is sample vaf, difference is difference between expected and observed vaf, value is RS value, difference/value is % difference
+						print(run_id, worksheet.stdout.rstrip(), sample_id, key, float(hd730_samples_dict[key]), value, (sigfig.round(difference, sigfigs=3)), (sigfig.round((difference/value)*100, sigfigs=3)), "True")# file = output_dna_hd730
+					else:
+ 						print(run_id, worksheet.stdout.rstrip(), sample_id, key, '', "n/a", "n/a", "n/a", "n/a", "False")# file = output_dna_hd730)
+	
 
 
-# Combine list of sample paths for hd728
-hd728_samples =  glob('/Output/results/*/Gathered_Results/Database/22M12180_variants.tsv') + glob('/Output/results/*/Gathered_Results/Database/22M06893_variants.tsv') + glob('/Output/results/*/Gathered_Results/Database/22M06896_variants.tsv')
-#print(hd728_samples)
+## HD728
+# Load uncertainty of measurement sample IDs and their reference standard into a dictionary
+with open("config_files/hd728_samples.yaml") as files:
+        hd728_samples = yaml.load(files, Loader=yaml.FullLoader)
+
+# Get all sample filepaths into list
+filepaths = []
+for sample in hd728_samples:
+        filepaths += glob(f'/Output/results/*/Gathered_Results/Database/{sample}_variants.tsv')
 
 
 # Put contents of each file into separate dictionaries
-for sample in hd728_samples:
+for sample in filepaths:
 	with open(sample) as file:
 		hd728_samples_dict = {}
 		for line in file:
@@ -89,7 +93,7 @@ for sample in hd728_samples:
 			#print(sample, hd728_samples_dict)
 
 	hd728_dict = {}
-	with open("TruQ1_RS_HD728.txt") as hd728:
+	with open("reference_standards/TruQ1_RS_HD728.txt") as hd728:
 		for line in hd728:
 			x = line.split('\t')
 			v = "chr" + x[3] + ":" + x[4]
@@ -101,7 +105,7 @@ for sample in hd728_samples:
 			split_sample_id = split_sample_path[6].split("_")
 
                        
-	# with open("uom_dna_hd28.txt", "a") as output_dna_hd728:
+	# with open("UoM_results/uom_dna_hd28.txt", "a") as output_dna_hd728:
 		sample_id = split_sample_id[0]
 		run_id = split_sample_path[3]
 		for (key, value) in hd728_dict.items():
@@ -112,4 +116,11 @@ for sample in hd728_samples:
 				print(run_id, worksheet.stdout.rstrip(), sample_id, key, float(hd728_samples_dict[key]), value, (sigfig.round(difference, sigfigs=3)), (sigfig.round((difference/value)*100, sigfigs=3)), "True")# file = output_dna_hd728)
 			else:
 				print(run_id, worksheet.stdout.rstrip(),  sample_id, key, '', "n/a", "n/a", "n/a", "n/a", "False")# file = output_dna_hd728)
+
+
+# Outputting runs with only last years date
+# Need to add something different here to the function
+def valid_date(s):
+	
+	parser.add_argument("-s", "--start date", dest="start_date", default=datetime.now() - relativedelta(years=1), type=valid_date, required=True, d: datetime.strptime(d, '%Y%m%d').date(), help="Date in the format yyyymmdd")
 
