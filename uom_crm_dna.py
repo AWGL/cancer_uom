@@ -1,4 +1,5 @@
 """
+<<<<<<< HEAD
 Script to see whether or not variants supplied by known reference standards are called for the TSO500 DNA assay
 during uncertainty of measurement runs
 """
