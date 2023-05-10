@@ -37,7 +37,6 @@ def dna_sample_file_list(config_file):
 	"""
 	Get all UOM dna sample filepaths from last year into list
 	"""
-
 	filepath_list = []
 
 	current_year = datetime.today().year
@@ -120,11 +119,11 @@ def compare_files(filepath_list, reference_variants_dict, samples_dict):
 	Splitting up filepaths to get sample and run IDs separately
 	Compare the reference standard files to the sample files to determine matches
 	"""
-
-	# Splitting up filepaths
+	
+	#Splitting up filepaths
 	for file in filepath_list:
-
-		split_sample_path = file.split("/")
+	
+		split_sample_path = file.split('/')
 		split_sample_id = split_sample_path[6].split("_")
 
 		sample_id = split_sample_id[0]
@@ -155,6 +154,7 @@ def compare_files(filepath_list, reference_variants_dict, samples_dict):
 					, worksheet.stdout.rstrip()\
 					, sample_id\
 					, variant\
+					, sample_id\
 					, ''\
 					, "n/a"\
 					, "n/a"\

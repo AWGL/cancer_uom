@@ -133,7 +133,7 @@ def compare_files(filepath_list, reference_variants_dict, samples_dict):
 			else:
                 
 				print(run_id, worksheet.stdout.rstrip(), sample_id, variant, "False")
-                                         
+
 
 ###########################
 ###     Programme       ###

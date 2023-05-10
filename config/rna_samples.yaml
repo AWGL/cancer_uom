@@ -1,0 +1,7 @@
+# Uncertainty of measurement sample IDs and their reference standard
+# To create a dictionary of sample IDs for which the measurement is calculated
+# These will be changed each year in here rather than in the main script
+
+22M81471:seraseqv4
+22M81472:seraseqv4
+22M82583:seraseqv4
