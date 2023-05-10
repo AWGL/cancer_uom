@@ -1,46 +1,199 @@
-import pandas as pd
+"""
+Script to see whether or not variants supplied by known reference standards are called for the CRM assay
+during uncertainty of measurement runs
+"""
+
 from glob import glob
+import itertools
 import subprocess
 import sigfig
+import argparse
+from datetime import datetime
+from datetime import date
+import yaml
+import csv
 
-#Get all files into a list 
-hd730_samples = glob('/Output/results/*/NGHS-101X/21M70050/*_21M70050_VariantReport.txt') + glob('/Output/results/*/NGHS-101X/22M12181/*_22M12181_VariantReport.txt') + glob('/Output/results/*/NGHS-101X/22M06894/*_22M06894_VariantReport.txt')
-#print(hd730_samples)
+###########################
+###	Functions	###
+###########################
+
+def parse_crm_config():
+	"""
+	Load uncertainty of measurement sample IDs and their corresponding reference standard into a dictionary
+	"""
+
+	# Load in the yaml file
+	with open('/home/v.ni286029/UoM_project/config_files/dna_config.yaml') as config:
+
+		config_file = yaml.load(config, Loader=yaml.FullLoader)	
+
+	return config_file
 
 
-# Put contents of each file into separate dictionaries
-for sample in hd730_samples:
-	with open(sample) as file:
-		hd730_samples_dict = {}
-		for line in file:
-			x = line.split('\t') # Split the columns based on tabs
-			hd730_samples_dict[x[1]] = x[2]   # 1 is variant, 2 is vaf
- 			#print(hd730_samples_dict)
+
+def crm_sample_file_list(config_file): 
+	"""
+	Get all UOM crm sample filepaths from last year into list
+	"""
+
+	filepath_list = []
+
+	current_year = datetime.today().year
+	last_year = [str(current_year -1)[2:]]
+	
+	# Getting the sample IDs
+	for sample in config_file:
+		
+		# Keep the root path, all files from last year with the sample
+		filepaths = glob(f'/Output/results/{last_year}*/NGHS-101X/{sample}/{last_year}*_VariantReport.txt')
+
+		if len(filepaths) == 0:
+
+			print(f'no files for sample {sample}')
+
+		filepath_list = list(itertools.chain(filepath_list, filepaths))
+
+
+	return filepath_list 
+
+
+
+def get_variants_in_crm_files(filepaths):
+	"""
+	Put position and base change of each sample file into a dictionary
+	"""
+
+	samples_dict = {}
+
+	for sample in filepaths:
+		
+		with open(sample) as file:
+
+			# split the lines by tab
+			sample_files = csv.reader(file, delimiter='\t')
+
+			for line in sample_files:
+
+				# Remove the header line
+				if line[1] != 'Variant':
+
+					# Position and base change already concatenated in txt file
+					v = line[1]     
+
+					# 2 is vaf
+					samples_dict[v] = line[2]
+
+	return samples_dict
 
 	
-		# Put RS file contents into dictionary
-		hd730_dict = {}
-		with open("TruQ1_RS_HD730_crm.txt") as hd730:
-			for line in hd730:
+def get_variants_in_reference_files_crm():
+	""" 
+	Put position and base change of each reference file into a dictionary
+	"""
+
+	# This is the reference standard dictionaries
+	reference_variants_dict = {} 
+
+	# All reference files in a list - This will need to change to suit reference standard file location
+	reference_files = glob(f'/home/v.ni286029/UoM_project/reference_standards/TruQ1_RS*.txt')
+
+	for file in reference_files:
+
+		with open(file) as reference:
+
+			for line in reference:
+
 				x = line.split('\t')
-				#v = "chr" + x[3] + ":" + x[4] #concatenate position and base change
-				hd730_dict[x[3]] = float(x[6])
+
+				# Concatenate position and base change
+				v = x[3] + ":" + x[4]	
+
+				# 7 is vaf			
+				reference_variants_dict[v] = float(x[7])  
+
+	return reference_variants_dict 
 
 
-			# Splitting paths of sample files  into sample ID and run ID
-			split_sample_path = sample.split("/")
-			split_sample_id = split_sample_path[6].split("_")
+def compare_files(filepath_list, reference_variants_dict, samples_dict):
+	"""
+	Splitting up filepaths to get sample and run IDs separately
+	Comparing the sample dictionary with the reference standard dictionary
+ 	"""	
+	
+	# Splitting up filepaths 
+	for path in filepath_list:
 
+		split_sample_path = path.split("/")
 
-	# Comparing dictionaries with the reference standard dictionary
- 		#with open("uom_crm_dna_hd730.txt", "a") as output_crm_dna_hd730:
-		sample_id = split_sample_id[4]
+		# Sample ID
+		sample_id = split_sample_path[5]
+		
+		# Run ID
 		run_id = split_sample_path[3]
-		for key, value in hd730_dict.items():
+		
+		# Comparing dictionaries for output
+		for variant, vaf in reference_variants_dict.items():
+		
+			# Worksheet corresponding to that run
 			worksheet = subprocess.run([f'grep {sample_id} /data/archive/*/{run_id}/SampleSheet.csv | cut -f 2 -d ","'], shell=True, capture_output=True)
-			if key in hd730_samples_dict.keys():
-				difference = float(hd730_samples_dict[key]) - value
-			# Key is variant position, hd730_samples_dict[key] is sample vaf, difference is difference between expected and observed vaf, value is RS value, difference/value is % difference
-				print(run_id, worksheet.stdout.rstrip(), sample_id, key, float(hd730_samples_dict[key]), value, (sigfig.round(difference, sigfigs=3)), (sigfig.round((difference/value)*100, sigfigs=3)), "True")# file = output_crm_dna_hd730)
+
+			if variant in samples_dict.keys():
+				
+				difference = float(samples_dict[variant]) - vaf
+
+				# Key is variant position, samples_dict[key] is sample vaf, difference is difference between expected and observed vaf, value is RS value, difference/value is % difference
+				print(run_id\
+					, worksheet.stdout.rstrip()\
+					, sample_id\
+					, variant\
+					, float(samples_dict[variant])\
+					, vaf\
+					, (sigfig.round(difference, sigfigs=3))\
+					, (sigfig.round((difference/vaf)*100, sigfigs=3))\
+					, "True")
+
 			else:
-				print(run_id, worksheet.stdout.rstrip(), sample_id, key, '', "n/a", "n/a", "n/a", "n/a", "False")# file = output_crm_dna_hd730)
+			
+				print(run_id\
+					, worksheet.stdout.rstrip()\
+					, sample_id\
+					, variant\
+					, ''\
+					, "n/a"\
+					, "n/a"\
+					, "n/a"\
+					, "n/a"\
+					, "False")
+
+
+###########################
+###	     Programme	    ###
+###########################
+
+# if __name__ == '__main__':
+
+# #	# Arguments
+# 	parser = argparse.ArgumentParser()
+# 	parser.add_argument('--config_file', 'config', help = 'yaml config file')
+# 	parser.add_argument('--reference_dict', 'r', help = 'dictionary of sample IDs with rs')   
+# 	parser.add_argument('--filepaths', 'fl', help = 'list of sample filepaths')
+# 	parser.add_argument('--file', 'f', help = 'splitting the filepaths into run id and sample id')
+# 	parser.add_argument('--reference_variants', 'ref', help = 'dict of reference variants/vaf')
+	
+# 	args = parser.parse_args()
+
+
+# Load uncertainty of measurement sample IDs and their corresponding reference standard into a dictionary
+config_file = parse_crm_config()
+
+# Get all uom sample files into list
+filepath_list = crm_sample_file_list(config_file)
+
+# Get all variants and their corresponding vaf in a dictionary
+samples_dict = get_variants_in_crm_files(filepath_list)
+
+# Get the reference variants and vaf into dictionaries
+reference_variants_dict = get_variants_in_reference_files_crm()
+
+#Final output
+compare_files = compare_files(filepath_list, reference_variants_dict, samples_dict)
