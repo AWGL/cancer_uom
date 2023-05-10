@@ -1,9 +1,0 @@
-# FOR HD728 SAMPLES
-# Uncertainty of measurement sample IDs and their reference standard
-# To create a dictionary of sample IDs for which the measurement is calculated
-# These will be changed each year in here rather than in the main script
-
-22M12180: HD728
-22M06893: HD728
-22M06896: HD728
-
