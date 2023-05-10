@@ -55,7 +55,6 @@ def dna_sample_file_list(config_file):
 
 		filepath_list = list(itertools.chain(filepath_list, filepaths))
 
-
 	return filepath_list 
 
 
@@ -74,7 +73,7 @@ def get_variants_in_dna_files(filepaths):
 			sample_files = csv.reader(file, delimiter='\t')
 
 			for line in sample_files:
-			
+
 				# Remove the header line
 				if line[1] != 'Variant':
 
