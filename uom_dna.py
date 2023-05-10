@@ -1,126 +1,198 @@
+"""
+Script to see whether or not variants supplied by known reference standards are called for the TSO500 DNA assay
+during uncertainty of measurement runs
+"""
+
+import pandas as pd
+import itertools
 from glob import glob
 import subprocess
+import os
 import sigfig
+import argparse
+from datetime import datetime
+from datetime import date
 import yaml
-import argparse 
-import datetime
-from dateutil.relativedelta import relativedelta
+import csv
 
 
-##EXAMPLE FUNCTION##
-def display_discounted_price(instrument, discount):
-  full_price = instrument_prices[instrument]
-  discount_percentage = discount / 100
-  discounted_price = full_price - (full_price * discount_percentage)
-  print("The instrument's discounted price is: " + str(discounted_price))
+###########################
+###	Functions	###
+###########################
 
-instrument = 'Clarinet' #this could be the dictionary or a list, arguments need to be specified!!
-discount = '20'
+def parse_dna_config():
+	"""
+	Load uncertainty of measurement sample IDs and their corresponding reference standard into a dictionary
+	"""
 
-# Load uncertainty of measurement sample IDs and their corresponding reference standard into a dictionary
+	# Load in the yaml file - This will need to change for local location of config file
+	with open('/home/v.ni286029/UoM_project/config_files/dna_config.yaml') as config:
 
+		config_file = yaml.load(config, Loader=yaml.FullLoader)	
 
-##ORIGINAL CODE##
-with open("config_files/hd730_samples.yaml") as files:
-	hd730_samples = yaml.load(files, Loader=yaml.FullLoader)
-
-
-# Get all sample filepaths into list
-
-	filepaths = []
-	for sample in hd730_samples:
-		filepaths += glob(f'/Output/results/*/Gathered_Results/Database/{sample}_variants.tsv')
-	
+	return config_file
 
 
-# Put contents of each file into separate dictionaries 
-#def files(comparison):
+def dna_sample_file_list(config_file): 
+	"""
+	Get all UOM dna sample filepaths from last year into list
+	"""
+
+	filepath_list = []
+
+	current_year = datetime.today().year
+	last_year = [str(current_year -1)[2:]]
+
+	# Getting the sample IDs
+	for sample in config_file:
+		
+		# Keep the root path, all files from last year with the sample
+		filepaths = glob(f'/Output/results/{last_year}*/Gathered_Results/Database/{sample}_variants.tsv')
+		
+		if len(filepaths) == 0:
+
+			print(f'no files for sample {sample}')
+
+		filepath_list = list(itertools.chain(filepath_list, filepaths))
+
+
+	return filepath_list 
+
+
+def get_variants_in_dna_files(filepaths):
+	"""
+	Put position and base change of each sample file into a dictionary
+	"""
+
+	samples_dict = {}
 
 	for sample in filepaths:
+		
 		with open(sample) as file:
-			hd730_samples_dict = {}
-			for line in file:
-				x = line.split('\t') 				# Split the columns based on tabs
-				v = x[1] + ":" + x[2] + x[3] + ">" +  x[4] 	# Concatenate position and base change
-				hd730_samples_dict[v] = x[5]               	#5 is vaf 
-	 	
-			hd730_dict = {}
-			with open("reference_standards/TruQ1_RS_HD730.txt") as hd730:	# path where reference standard file is (for comparison)
-				for line in hd730:
-					x = line.split('\t')
-					v = "chr" + x[3] + ":" + x[4]		# Concatenate position and base change
-					hd730_dict[v] = float(x[7])
-					# print(hd730_dict)
+
+			# split the lines by tab
+			sample_files = csv.reader(file, delimiter='\t')
+
+			for line in sample_files:
 			
-					# Splitting path into sample ID and run ID
-					split_sample_path = sample.split("/") 
-					split_sample_id = split_sample_path[6].split("_")
+				# Remove the header line
+				if line[1] != 'Variant':
 
-				# Comparing sample files to reference standard files to find matches
-	 			#with open("UoM_results/uom_dna_hd730.txt", "a") as output_dna_hd730:	# Creates output of analyis as text file
-				sample_id = split_sample_id[0]
-				run_id = split_sample_path[3]
-				for key, value in hd730_dict.items():
-					worksheet = subprocess.run([f'grep {sample_id} /data/archive/*/{run_id}/SampleSheet.csv | cut -f 3 -d ","'], shell=True, capture_output=True)
-					if key in hd730_samples_dict.keys():
-						difference = float(hd730_samples_dict[key]) - value
-						# Key is variant position, hd730_samples_dict[key] is sample vaf, difference is difference between expected and observed vaf, value is RS value, difference/value is % difference
-						print(run_id, worksheet.stdout.rstrip(), sample_id, key, float(hd730_samples_dict[key]), value, (sigfig.round(difference, sigfigs=3)), (sigfig.round((difference/value)*100, sigfigs=3)), "True")# file = output_dna_hd730
-					else:
- 						print(run_id, worksheet.stdout.rstrip(), sample_id, key, '', "n/a", "n/a", "n/a", "n/a", "False")# file = output_dna_hd730)
-	
+					# Position and base change already concatenated in txt file     
+					v = line[1] + ":" + line[2] + line[3] + ">" +  line[4]
+
+					# 2 is vaf
+					samples_dict[v] = line[5]
+
+	return samples_dict
 
 
-## HD728
-# Load uncertainty of measurement sample IDs and their reference standard into a dictionary
-with open("config_files/hd728_samples.yaml") as files:
-        hd728_samples = yaml.load(files, Loader=yaml.FullLoader)
+def get_variants_in_reference_files_dna():
+	"""
+	Put position and base change of each reference file into a dictionary
+	"""
 
-# Get all sample filepaths into list
-filepaths = []
-for sample in hd728_samples:
-        filepaths += glob(f'/Output/results/*/Gathered_Results/Database/{sample}_variants.tsv')
+	# This is the reference standard dictionaries
+	reference_variants_dict = {}
+
+	# All reference files in a list - This will need to change to suit reference standard file location
+
+	reference_files = glob(f'/home/v.ni286029/UoM_project/reference_standards/TruQ1_RS*.txt')
+
+	for file in reference_files:
+
+		with open(file) as reference:
+
+			for line in reference:
+
+				x = line.split('\t')
+
+				# Concatenate position and base change
+				v = "chr" + x[3] + ":" + x[4]
+
+				# 7 is vaf
+				reference_variants_dict[v] = float(x[7])
+				
+	return reference_variants_dict
 
 
-# Put contents of each file into separate dictionaries
-for sample in filepaths:
-	with open(sample) as file:
-		hd728_samples_dict = {}
-		for line in file:
-			x = line.split('\t')                          # Split the columns based on tabs
-			v = x[1] + ":" + x[2] + x[3] + ">" +  x[4]	# Concatenate position and base change
-			hd728_samples_dict[v] = x[5]                  # 5 is vaf
-			#print(sample, hd728_samples_dict)
+def compare_files(filepath_list, reference_variants_dict, samples_dict):
+	"""
+	Splitting up filepaths to get sample and run IDs separately
+	Compare the reference standard files to the sample files to determine matches
+	"""
 
-	hd728_dict = {}
-	with open("reference_standards/TruQ1_RS_HD728.txt") as hd728:
-		for line in hd728:
-			x = line.split('\t')
-			v = "chr" + x[3] + ":" + x[4]
-			hd728_dict[v] = float(x[7])           #7 is vaf
- 			#print(hd728_dict)
-                        
-                        # Splitting up path to get sample ID and run ID
-			split_sample_path = sample.split("/")
-			split_sample_id = split_sample_path[6].split("_")
+	# Splitting up filepaths
+	for file in filepath_list:
 
-                       
-	# with open("UoM_results/uom_dna_hd28.txt", "a") as output_dna_hd728:
+		split_sample_path = file.split("/")
+		split_sample_id = split_sample_path[6].split("_")
+
 		sample_id = split_sample_id[0]
 		run_id = split_sample_path[3]
-		for (key, value) in hd728_dict.items():
-			worksheet = subprocess.run([f'grep {sample_id} /data/archive/*/{run_id}/SampleSheet.csv | cut -f 3 -d ","'], shell=True, capture_output=True)
-			if key in hd728_samples_dict.keys():
-				difference = float(hd728_samples_dict[key]) - value
-				# Key is variant position, hd730_samples_dict[key] is sample vaf, difference is difference between expected and observed vaf, value is RS value, difference/value is % difference
-				print(run_id, worksheet.stdout.rstrip(), sample_id, key, float(hd728_samples_dict[key]), value, (sigfig.round(difference, sigfigs=3)), (sigfig.round((difference/value)*100, sigfigs=3)), "True")# file = output_dna_hd728)
-			else:
-				print(run_id, worksheet.stdout.rstrip(),  sample_id, key, '', "n/a", "n/a", "n/a", "n/a", "False")# file = output_dna_hd728)
-
-
-# Outputting runs with only last years date
-# Need to add something different here to the function
-def valid_date(s):
 	
-	parser.add_argument("-s", "--start date", dest="start_date", default=datetime.now() - relativedelta(years=1), type=valid_date, required=True, d: datetime.strptime(d, '%Y%m%d').date(), help="Date in the format yyyymmdd")
+		for variant, vaf in reference_variants_dict.items():
 
+			# Worksheet that corresponds to that run
+			worksheet = subprocess.run([f'grep {sample_id} /data/archive/*/{run_id}/SampleSheet.csv | cut -f 3 -d ","'], shell=True, capture_output=True)
+			if variant in samples_dict.keys():
+
+				difference = float(samples_dict[variant]) - vaf
+
+				# Key is variant position, samples_dict[key] is sample vaf, difference is difference between expected and observed vaf, value is RS value, difference/value is % difference
+				print(run_id\
+					, worksheet.stdout.rstrip()\
+					, sample_id\
+					, variant\
+					, float(samples_dict[variant])\
+					, vaf\
+					, (sigfig.round(difference, sigfigs=3))\
+					, (sigfig.round((difference/vaf)*100, sigfigs=3))\
+					, "True")
+
+			else:
+
+				print(run_id\
+					, worksheet.stdout.rstrip()\
+					, sample_id\
+					, variant\
+					, ''\
+					, "n/a"\
+					, "n/a"\
+					, "n/a"\
+					, "n/a"\
+					, "False")
+
+
+
+###########################
+###	Programme	###
+###########################
+
+# if __name__ == '__main__':
+
+# #	# Arguments
+# 	parser = argparse.ArgumentParser()
+# 	parser.add_argument('--config_file', 'config', help = 'yaml config file')
+# 	parser.add_argument('--reference_dict', 'r', help = 'dictionary of sample IDs with rs')
+# 	parser.add_argument('--filepath_list', 'fl', help = 'list of sample filepaths')
+# 	parser.add_argument('--file', 'f', help = 'splitting the filepaths into run id and sample id')
+# 	parser.add_argument('--reference_variants', 'ref', help = 'dict of reference variants/vaf')
+
+# 	args = parser.parse_args()
+
+
+# Load uncertainty of measurement sample IDs and their corresponding reference standard into a dictionary
+config_file = parse_dna_config()
+
+# Get all uom sample files into list
+filepath_list = dna_sample_file_list(config_file)
+
+# Get all variants and their corresponding vaf in a dictionary
+sample_variant_dict = get_variants_in_dna_files(filepath_list)	
+
+# Get the reference variants and vaf into dictionaries
+reference_variants_dict = get_variants_in_reference_files_dna()
+
+#Final output
+compare_files = compare_files(filepath_list, reference_variants_dict, sample_variant_dict)
