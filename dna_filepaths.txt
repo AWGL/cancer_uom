@@ -1,0 +1,7 @@
+# Example DNA filepaths for unit testing
+
+/Output/results/220629_A01771_0055_AH7GK7DRX2/Gathered_Results/Database/21M70050_variants.tsv'
+/Output/results/220926_A01771_0089_BHLLLJDRX2/Gathered_Results/Database/22M12181_variants.tsv'
+/Output/results/220428_A01771_0017_BH5TM2DRX2/Gathered_Results/Database/22M06894_variants.tsv
+/Output/results/220627_A01771_0053_AH7K5KDRX2/Gathered_Results/Database/22M06893_variants.tsv
+/Output/results/220722_A00748_0280_AH7JGHDRX2/Gathered_Results/Database/22M06896_variants.tsv
