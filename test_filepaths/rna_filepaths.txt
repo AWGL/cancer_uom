@@ -1,0 +1,5 @@
+# Example RNA filepaths for unit testing
+
+/Output/results/220620_A01771_0050_AH7K37DRX2/Gathered_Results/Database/22M81471_fusion_check.csv
+/Output/results/220629_A01771_0055_AH7GK7DRX2/Gathered_Results/Database/22M81472_fusion_check.csv
+/Output/results/221109_A01771_0114_AHNNLGDRX2_orig/Gathered_Results/Database/22M82583_fusion_check.csv
