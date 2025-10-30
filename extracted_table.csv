@@ -1,0 +1,23 @@
+ Gene ID  , COSMIC Identifier, Amino Acid Change     , AF% , VCF_description
+ AKT1     , COSM33765        , p.E17K                ,0.49, 14:105246551C>T
+ ALK      , COSM144250       , p.G1202R              ,0.59, 2:29443613C>T
+ ALK      , COSM28055        , p.F1174L              ,0.61, 2:29443695G>T
+ BRAF     , COSM476          , p.V600E               ,0.56, 7:140453136A>T
+ BRCA1    , COSM138519       , p.K654fs*47           , NA  , 17:41245586CT>C
+ BRCA2    , COSM173842       , p.R2645fs*3           , NA  , 13:32936787AG>A
+ CD74/ROS1, NA               , Translocation         , NA  , Fusion Found
+ EGFR     , COSM6224         , p.L858R               ,0.56, 7:55249071C>T
+ EGFR     , COSM6240         , p.T790M               ,0.51, 7:55259515T>G
+ EGFR     , COSM12270        , p.L747_P753>S         ,0.53, 7:55242469TTAAGAGAAGCAACATCTC>T
+ EGFR     , COSM6256         , p.S752_I759delSPKANKEI,0.47, 7:55242483ATCTCCGAAAGCCAACAAGGAAATC>A
+ EGFR     , COSM6223         , p.E746_A750delELREA   ,0.56, 7:55242464AGGAATTAAGAGAAGC>A
+ EML4-ALK , NA               , Translocation         , NA  , Fusion Found
+ ERBB2    , COSM20959        , p.A775_G776insYVMA    ,0.38, 17:37880986A>ACGTGATGGCCTC
+ KIT      , COSM1134         , p.D816V               ,0.67, 4:55599321A>T
+ KRAS     , COSM521          , p.G12D                ,0.53, 12:25398285C>A
+ KRAS     , COSM516          , p.G12C                ,0.51, 12:25398284C>T
+ KRAS     , COSM554          , p.Q61H                ,0.36, 12:25380275T>G
+ NCOA4/RET, NA               , Translocation         , NA  , Fusion Found
+ NRAS     , COSM584          , p.Q61R                ,0.48, 1:115256529T>C
+ PIK3CA   , COSM775          , p.H1047R              ,0.59, 3:178952085A>G
+ PIK3CA   , COSM124643       , p.N1068fs*4           ,0.39, 3:178952149C>CA
