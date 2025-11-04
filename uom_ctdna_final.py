@@ -63,16 +63,16 @@ def load_reference_variants(rs_path):
         raise ValueError(f"Couldn't find 'VCF_description'-like column in {rs_path}")
     if af_col is None:
         print("⚠️ Warning: no AF% column found, using 0 for all VAFs")
-        df["af_dummy"] = 0
+        df["af_dummy"] = None
         af_col = "af_dummy"
 
     ref_dict = {}
     for _, row in df.iterrows():
         variant = normalize_variant(row[vcf_col])
         try:
-            vaf = float(row[af_col])
+            vaf = np.round(float(row[af_col]) / 100, 5)
         except Exception:
-            vaf = 0.0
+            vaf = None
         if variant:
             ref_dict[variant] = vaf
     return ref_dict
@@ -100,7 +100,7 @@ def load_sample_variants(variant_path):
     for _, r in df.iterrows():
         variant = f"{r['chr']}:{r['pos']}{r['ref']}>{r['alt']}"
         try:
-            vaf = np.round(float(r["vaf"]) * 100, 3)
+            vaf = np.round(float(r["vaf"]), 5)
         except Exception:
             continue
         variants[variant] = vaf
@@ -116,8 +116,6 @@ def load_fusion_names(fusion_path):
         print(f"fusion path does not exist  : {fusion_path}")
         return []
 
-
-
     try:
         df = pd.read_csv(fusion_path, sep=",", dtype=str)
     except:
@@ -128,6 +126,15 @@ def load_fusion_names(fusion_path):
         if "--" in str(val):
             fusions.append(str(val).strip())
     return fusions
+
+# def sensitvity_table(df):
+
+
+
+
+# def vaf_difference_summary(df):
+
+
 
 
 def main():
@@ -169,8 +176,6 @@ def main():
         sample_variants = load_sample_variants(variant_path)
         sample_fusions = load_fusion_names(fusion_path)
 
-
-
         for variant, ref_vaf in ref_variants.items():
             # Handle fusion differently
             if "--" in variant:
@@ -190,14 +195,13 @@ def main():
             
             # SNV/indel path
             sample_vaf = sample_variants.get(variant)
-            if sample_vaf is not None:
-                diff = np.round(sample_vaf - ref_vaf, 3)
-                pct_diff = np.round((diff / ref_vaf * 100) if ref_vaf != 0 else 0)
-                in_sample = True
+            if sample_vaf is not None and ref_vaf is not None:
+                diff = np.round(sample_vaf - ref_vaf, 5)
+                pct_diff = np.round((diff / ref_vaf * 100) if ref_vaf != 0 else 0, 3)
             else:
                 diff = pct_diff = None
-                in_sample = False
 
+            variant_in_sample = any(variant in f for f in sample_variants)
             results.append({
                 "run_id": run_id,
                 "worksheet": worksheet,
@@ -207,13 +211,42 @@ def main():
                 "sample_vaf": sample_vaf,
                 "difference": diff,
                 "percent_difference": pct_diff,
-                "variant_in_sample": in_sample
+                "variant_in_sample": variant_in_sample
             })
 
     out_df = pd.DataFrame(results)
     out_df.to_csv(args.out, index=False)
     print(f"✅ Wrote {len(out_df)} rows to {args.out}")
 
+    
+    # Group by Assay and calculate stats
+    out_df['Assay'] = "ctDNA"
+    summary = out_df.groupby('Assay').agg(
+        Difference_Average=('difference', 'mean'),
+        Difference_Maximum=('difference', 'max'),
+        Difference_Minimum=('difference', 'min'),
+        Percentage_Average=('percent_difference', 'mean'),
+        Percentage_Maximum=('percent_difference', 'max'),
+        Percentage_Minimum=('percent_difference', 'min')
+    ).reset_index()
+
+    # Optional: format numbers
+    summary = summary.round({
+        'Difference_Average': 5,
+        'Difference_Maximum': 4,
+        'Difference_Minimum': 4,
+        'Percentage_Average': 3,
+        'Percentage_Maximum': 2,
+        'Percentage_Minimum': 2
+    })
+
+    # Display the summary table
+    print(summary)
+    
+    # Summary of boolean column
+    sensitivity_summary = out_df['variant_in_sample'].value_counts(normalize=False)
+    print(f"variant_in_sample summary \n {sensitivity_summary}")
+    print("Put numbers into MedCalc sensitivity calculator where True = True Positive, False = False Negative")
 
 if __name__ == "__main__":
     main()
