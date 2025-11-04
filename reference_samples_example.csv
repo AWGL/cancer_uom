@@ -1,4 +1,4 @@
-﻿sample_id,Sample ID,Qubit DNA conc. (ng/ul),TapeStation 75-300bp conc (pg/ul),TapeStation %cfDNA,NGS Worksheet,run_id
+﻿sample_id,Sample ID,Qubit DNA conc. (ng/ul),TapeStation 75-300bp conc (pg/ul),TapeStation %cfDNA,worksheet,run_id
 22M92078,SeraSeq Complete 0.5%,14.7,8200,89.44,23-2695,230612_A01771_0236_BHKGJLDMXY
 22M92078,SeraSeq Complete 0.5%,14.7,8200,89.44,23-2802,230619_A00748_0409_AHKGHLDMXY
 22M92078,SeraSeq Complete 0.5%,14.7,8200,89.44,23-2956,230626_A00748_0412_AHKGJ2DMXY

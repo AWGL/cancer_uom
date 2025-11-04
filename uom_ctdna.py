@@ -5,6 +5,10 @@ import os
 import re
 import argparse
 
+"""
+usage: python uom_ctdna.py [-h] [--rs RS] [--samples SAMPLES] [--out OUT]
+use help flag for more info
+"""
 
 def build_file_path(run_id, sample_id):
     """Return correct variant file path for given run_id and sample_id."""
@@ -127,25 +131,24 @@ def load_fusion_names(fusion_path):
             fusions.append(str(val).strip())
     return fusions
 
-# def sensitvity_table(df):
-
-
-
-
-# def vaf_difference_summary(df):
-
-
-
 
 def main():
     default_rs_filepath = "/home/transfer/Ant_Analysis/cancer_uom/reference_standards/rs_ctDNA.csv"
     default_samples_filepath = "/home/transfer/Ant_Analysis/cancer_uom/reference_samples.csv"
 
-    parser = argparse.ArgumentParser(description="Compare reference variants with sample variants.")
+    parser = argparse.ArgumentParser(
+        description=
+        "Compare reference variants with sample variants. \n\n"
+        "- Reference variants csv must have columns 'AF%' and 'VCF_description' - check example reference_standards/rs_ctDNA.csv\n"
+        "- Samples csv must have columns 'sample_id', 'worksheet' and 'run_id' - check reference_samples_example.csv\n\n"
+        "Sensitivity summary stats printed to terminal, full variants table saved to output .csv",
+        formatter_class=argparse.RawTextHelpFormatter
+        )
     parser.add_argument("--rs", default=default_rs_filepath, help="Reference variants CSV (rs_ctDNA.csv)")
-    parser.add_argument("--samples", default=default_samples_filepath, help="Samples CSV (reference_standard_file.csv)")
+    parser.add_argument("--samples", default=default_samples_filepath, help="Samples CSV (reference_samples.csv)")
     parser.add_argument("--out", default="uom_ctdna_output.csv", help="Output CSV")
     args = parser.parse_args()
+
 
     try:
         os.path.exists(args.samples)
@@ -163,7 +166,6 @@ def main():
     worksheet_col = "worksheet" if "worksheet" in samples_df.columns else None
 
     results = []
-    
 
     for _, srow in samples_df.iterrows():
         run_id = str(srow["run_id"])
@@ -217,7 +219,6 @@ def main():
     out_df = pd.DataFrame(results)
     out_df.to_csv(args.out, index=False)
     print(f"✅ Wrote {len(out_df)} rows to {args.out}")
-
     
     # Group by Assay and calculate stats
     out_df['Assay'] = "ctDNA"
