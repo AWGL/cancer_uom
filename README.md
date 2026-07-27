@@ -7,6 +7,7 @@ Uncertainty of measurement calculations for cancer NGS assays
    ```
 
 ## Instructions for yearly update
+   For ctDNA, run 'python uom_ctdna.py -h' for instructions
 
 ### Find which samples correspond to which reference standard in shire 
    HD728, HD730 or RNA
