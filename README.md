@@ -3,10 +3,16 @@ Uncertainty of measurement calculations for cancer NGS assays
 
 ### Run
    ```
-  python <filename>
+  python <script_name>
    ```
 
 ## Instructions for yearly update
+   For ctDNA, run 'python uom_ctdna.py -h' for instructions
+
+## Sera seq control variant list
+   https://www.seracare.com/globalassets/seracare-resources/tpr-0710-0672-seraseq-ctdna-complete-rm-af0.5-10690580.pdf
+
+   In practise, the ERBB2 variant 17:37880986A>ACGTGATGGCCTC is called as 17:37880981A>AGCATACGTGATG
 
 ### Find which samples correspond to which reference standard in shire 
    HD728, HD730 or RNA
@@ -25,5 +31,3 @@ Uncertainty of measurement calculations for cancer NGS assays
 ### Inserting worksheet ID into output
   Check in the sample sheet manually that where you 'cut' is the correct column that will extract the worksheet ID.
   These differ in TSO500 and CRM sample sheets
-  
-  

@@ -1,0 +1,5 @@
+dna_path_file: 'test_filepaths/dna_filepaths.txt'
+rna_path_file: 'test_filepaths/rna_filepaths.txt'
+crm_path_file: 'test_filepaths/crm_filepaths.txt'
+HD728_reference_file: 'reference_standards/TruQ1_RS_HD728.txt'
+HD730_reference_file: 'reference_standards/TruQ1_RS_HD730.txt'
