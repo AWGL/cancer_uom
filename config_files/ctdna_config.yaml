@@ -1,0 +1,11 @@
+# File paths
+default_rs_filepath: "./reference_standards/rs_ctDNA.csv"
+default_samples_filepath: "./reference_standards/reference_samples.csv"
+variant_file_path: f"{base_dir}/{sample_id}_variants.tsv"
+fusion_file_path: f"{base_dir}/{sample_id}_fusion_check.csv"
+
+# Directory paths
+240718_database_dir: f"/data/output/results/{run_str}/tso500_ctdna/post_processing/results/database"
+newer_run_database_dir: f"/data/output/results/{run_str}/tso500_ctdna/post_processing/database"
+archive_run_database_dir: f"/data/output/archive_results/{{year}}/{{month}}/{{run_str}}/tso500_ctdna/post_processing/database"
+output_dir: "./output/"

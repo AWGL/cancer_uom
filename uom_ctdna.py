@@ -2,11 +2,14 @@
 import pandas as pd
 import numpy as np
 import os
-import re
 import argparse
+import yaml
+
+with open("config_files/ctdna_config.yaml", "r") as f:
+    config = yaml.safe_load(f)
 
 """
-usage: python uom_ctdna.py [-h] [--rs RS] [--samples SAMPLES] [--out OUT]
+usage: python uom_ctdna.py [-h] [--config CONFIG] [--rs RS] [--samples SAMPLES] [--out OUT]
 use help flag for more info
 """
 
@@ -19,16 +22,16 @@ def build_file_path(run_id, sample_id):
         numeric_part = 0
 
     if "240718" in run_str:
-        base_dir = f"/data/output/results/{run_str}/tso500_ctdna/post_processing/results/database"
+        base_dir = config.get("240718_database_dir").format(run_str=run_str)
     elif numeric_part > 2404:
-        base_dir = f"/data/output/results/{run_str}/tso500_ctdna/post_processing/database"
+        base_dir = config.get("newer_run_database_dir").format(run_str=run_str)
     else:
         year = 2000 + int(run_str[:2])
         month = run_str[2:4]
-        base_dir = f"/data/output/archive_results/{year}/{month}/{run_str}/tso500_ctdna/post_processing/database"
+        base_dir = config.get("archive_run_database_dir").format(year=year, month=month, run_str=run_str)
     
-    variant_file = f"{base_dir}/{sample_id}_variants.tsv"
-    fusion_file = f"{base_dir}/{sample_id}_fusion_check.csv"
+    variant_file = config.get("variant_file_path").format(base_dir=base_dir, sample_id=sample_id)
+    fusion_file = config.get("fusion_file_path").format(base_dir=base_dir, sample_id=sample_id)
     return variant_file, fusion_file
 
 
@@ -51,7 +54,7 @@ def load_reference_variants(rs_path):
     try:
         os.path.exists(rs_path)
         print(f"Reference file exists        : {rs_path}")
-    except Exception:
+    except FileNotFoundError:
         print(f"Reference file does not exist: {rs_path}")
 
     df = pd.read_csv(rs_path)
@@ -75,7 +78,7 @@ def load_reference_variants(rs_path):
         variant = normalize_variant(row[vcf_col])
         try:
             vaf = np.round(float(row[af_col]) / 100, 5)
-        except Exception:
+        except (ValueError, TypeError):
             vaf = None
         if variant:
             ref_dict[variant] = vaf
@@ -93,7 +96,7 @@ def load_sample_variants(variant_path):
     
     try:
         df = pd.read_csv(variant_path, sep="\t", dtype=str)
-    except Exception:
+    except (FileNotFoundError, pd.errors.EmptyDataError):
         return {}
 
     if not {"chr", "pos", "ref", "alt", "vaf"}.issubset(df.columns):
@@ -105,7 +108,7 @@ def load_sample_variants(variant_path):
         variant = f"{r['chr']}:{r['pos']}{r['ref']}>{r['alt']}"
         try:
             vaf = np.round(float(r["vaf"]), 5)
-        except Exception:
+        except (ValueError, TypeError):
             continue
         variants[variant] = vaf
     return variants
@@ -122,7 +125,7 @@ def load_fusion_names(fusion_path):
 
     try:
         df = pd.read_csv(fusion_path, sep=",", dtype=str)
-    except:
+    except (FileNotFoundError, pd.errors.EmptyDataError):
         return []
 
     fusions = []
@@ -133,8 +136,15 @@ def load_fusion_names(fusion_path):
 
 
 def main():
-    default_rs_filepath = "/home/transfer/Ant_Analysis/cancer_uom/reference_standards/rs_ctDNA.csv"
-    default_samples_filepath = "/home/transfer/Ant_Analysis/cancer_uom/reference_samples.csv"
+
+    default_rs_filepath = config.get("default_rs_filepath")
+    default_samples_filepath = config.get("default_samples_filepath")
+    output_dir = config.get("output_dir")
+    year = pd.Timestamp.now().year
+    # make year subdirectory if it doesn't exist
+    year_dir = os.path.join(output_dir, str(year))
+    os.makedirs(year_dir, exist_ok=True)
+    output_path = os.path.join(year_dir, f"{year}_ctdna_uom.csv")
 
     parser = argparse.ArgumentParser(
         description=
@@ -144,16 +154,17 @@ def main():
         "Sensitivity summary stats printed to terminal, full variants table saved to output .csv",
         formatter_class=argparse.RawTextHelpFormatter
         )
+    parser.add_argument("--config", default="config_files/ctdna_config.yaml", help="YAML config file")
     parser.add_argument("--rs", default=default_rs_filepath, help="Reference variants CSV (rs_ctDNA.csv)")
     parser.add_argument("--samples", default=default_samples_filepath, help="Samples CSV (reference_samples.csv)")
-    parser.add_argument("--out", default="uom_ctdna_output.csv", help="Output CSV")
+    parser.add_argument("--out", default=output_path, help="Output CSV")
     args = parser.parse_args()
 
 
     try:
         os.path.exists(args.samples)
         print(f"Reference standards file exists         : {args.samples}")
-    except Exception:
+    except FileNotFoundError:
         print(f"Reference standards file does not exist : {args.samples}")
 
     # Load data
