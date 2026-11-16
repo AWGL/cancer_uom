@@ -6,7 +6,7 @@ fusion_file_path: /{base_dir}/{sample_id}_fusion_check.csv
 HD728_reference_file: 'reference_standards/TruQ1_RS_HD728.txt'
 HD730_reference_file: 'reference_standards/TruQ1_RS_HD730.txt'
 
-output_dir: ./output/{year}/
+output_dir: ./output/{year}/{assay}/
 
 assays:
   ctdna:
@@ -39,7 +39,6 @@ assays:
     variant_file_path: /{base_dir}/{sample_id}_variants.tsv
     fusion_file_path: /{base_dir}/{sample_id}_fusion_check.csv
     # wren results directory paths
-    240718_database_dir: /data/output/results/{run_str}/tso500_dna/post_processing/results/database
     newer_run_database_dir: /data/output/results/{run_str}/tso500_dna/post_processing/database
     archive_run_database_dir: /data/output/archive_results/{year}/{month}/{run_str}/tso500_dna/post_processing/database
 
@@ -60,7 +59,6 @@ assays:
     variant_file_path: /{base_dir}/{sample_id}_variants.tsv
     fusion_file_path: /{base_dir}/{sample_id}_fusion_check.csv
     # wren results directory paths
-    240718_database_dir: /data/output/results/{run_str}/tso500_rna/post_processing/results/database
     newer_run_database_dir: /data/output/results/{run_str}/tso500_rna/post_processing/database
     archive_run_database_dir: /data/output/archive_results/{year}/{month}/{run_str}/tso500_rna/post_processing/database
     test_filepaths:

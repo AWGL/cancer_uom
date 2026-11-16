@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
-import pandas as pd
-import numpy as np
-import os
-import argparse
-import yaml
 
-with open("config_files/ctdna_config.yaml", "r") as f:
-	config = yaml.safe_load(f)
+import argparse
+from itertools import count
+import os
+
+import numpy as np
+import pandas as pd
+import yaml
+from statsmodels.stats.proportion import proportion_confint
+
 
 """
 usage: python uom_ctdna.py [-h] [--config CONFIG] [--rs RS] [--samples SAMPLES] [--out OUT]
@@ -88,9 +90,7 @@ def load_reference_variants(rs_path):
 def load_sample_variants(variant_path):
 	"""Load one *_variants.tsv file → dict {variant: sample_vaf}."""
 	
-	if os.path.exists(variant_path):
-		print(f"variant path exists         : {variant_path}")
-	else:
+	if not os.path.exists(variant_path):
 		print(f"variant path does not exist : {variant_path}")
 		return {}
 	
@@ -117,9 +117,7 @@ def load_sample_variants(variant_path):
 def load_fusion_names(fusion_path):
 	"""Load all fusions from *_fusion_check.tsv as a list of strings."""
 
-	if os.path.exists(fusion_path):
-		print(f"fusion path exists          : {fusion_path}")
-	else:
+	if not os.path.exists(fusion_path):
 		print(f"fusion path does not exist  : {fusion_path}")
 		return []
 
@@ -136,37 +134,44 @@ def load_fusion_names(fusion_path):
 
 
 def main():
-
-	default_rs_filepath = config.get("default_rs_filepath")
-	default_samples_filepath = config.get("default_samples_filepath")
-	output_dir = config.get("output_dir")
-	year = pd.Timestamp.now().year
-	# make year subdirectory if it doesn't exist
-	year_dir = os.path.join(output_dir, str(year))
-	os.makedirs(year_dir, exist_ok=True)
-	output_path = os.path.join(year_dir, f"{year}_ctdna_uom.csv")
-
 	# Arguments
 	parser = argparse.ArgumentParser(
 		description=
 		"Compare reference variants with sample variants. \n\n"
-		"- Reference variants csv must have columns 'AF%' and 'VCF_description' - check example reference_standards/rs_ctDNA.csv\n"
-		"- Samples csv must have columns 'sample_id', 'worksheet' and 'run_id' - check reference_samples_example.csv\n\n"
+		"- Reference variants csv must have columns 'AF%' and 'VCF_description' - see reference_standards/rs_ctDNA.csv\n"
+		"- Samples csv must have columns 'sample_id', 'worksheet' and 'run_id' - see reference_samples/ctdna.csv\n\n"
 		"Sensitivity summary stats printed to terminal, full variants table saved to /output/<year>/<year>_<assay>_uom.csv",
 		formatter_class=argparse.RawTextHelpFormatter
 		)
-	parser.add_argument("--config", default="config_files/ctdna_config.yaml", help="YAML config file")
-	parser.add_argument("--rs", default=default_rs_filepath, help="Reference variants CSV (rs_ctDNA.csv)")
-	parser.add_argument("--samples", default=default_samples_filepath, help="Samples CSV (reference_samples.csv)")
-	parser.add_argument("--out", default=output_path, help="Output CSV")
+	parser.add_argument("--assay", choices=["ctdna", "dna", "rna"], help="Assay type")
+	parser.add_argument("--config", default="config/config.yaml", help="YAML config file")
+	parser.add_argument("--rs", help="Reference variants CSV (rs_ctDNA.csv)")
+	parser.add_argument("--samples", help="Samples CSV (reference_samples.csv)")
+	parser.add_argument("--out", help="Output directory")
 	args = parser.parse_args()
 
+	with open(args.config, "r") as f:
+		config = yaml.safe_load(f)
 
-	try:
-		os.path.exists(args.samples)
-		print(f"Reference standards file exists         : {args.samples}")
-	except FileNotFoundError:
-		print(f"Reference standards file does not exist : {args.samples}")
+	year = pd.Timestamp.now().year
+	assay = config.get(args.assay)
+
+	if args.rs is None:
+		args.rs = assay.get("reference_standards")
+	if args.samples is None:
+		args.samples = assay.get("reference_samples")
+	if args.out is None:
+		output_dir = config.get("output_dir").format(year=year, assay=args.assay)
+		# make year subdirectory if it doesn't exist
+		os.makedirs(output_dir, exist_ok=True)
+		args.out = os.path.join(output_dir)
+
+	if not os.path.exists(args.config):
+		return FileNotFoundError(f"Config file does not exist: {args.config}")
+	if not os.path.exists(args.samples):
+		return FileNotFoundError(f"Reference samples file does not exist: {args.samples}")
+	if not os.path.exists(args.rs):
+		return FileNotFoundError(f"Reference standards file does not exist: {args.rs}")
 
 	# Load data
 	ref_variants = load_reference_variants(args.rs)
@@ -229,8 +234,10 @@ def main():
 			})
 
 	out_df = pd.DataFrame(results)
-	out_df.to_csv(args.out, index=False)
-	print(f"✅ Wrote {len(out_df)} rows to {args.out}")
+	filename = f"{year}_{args.assay}_uom_results.csv"
+	filepath = os.path.join(args.out, filename)
+	out_df.to_csv(filepath, index=False)
+	print(f"✅ Wrote {len(out_df)} rows to {filepath}")
 	
 	# Group by Assay and calculate stats
 	out_df['Assay'] = "ctDNA"
@@ -258,8 +265,15 @@ def main():
 	
 	# Summary of boolean column
 	sensitivity_summary = out_df['variant_in_sample'].value_counts(normalize=False)
+	confint = proportion_confint(
+		sensitivity_summary[True],
+		sensitivity_summary.sum(),
+		alpha=0.05,
+		method='normal',
+		alternative='two-sided',
+		)
 	print(f"variant_in_sample summary \n {sensitivity_summary}")
-	print("Put numbers into MedCalc sensitivity calculator where True = True Positive, False = False Negative")
+	print(f"95% Confidence Interval for Sensitivity: {confint}")
 
 if __name__ == "__main__":
 	main()
