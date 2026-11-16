@@ -238,9 +238,9 @@ def main():
 		Difference_Average=('difference', 'mean'),
 		Difference_Maximum=('difference', 'max'),
 		Difference_Minimum=('difference', 'min'),
-		%_Difference_Average=('percent_difference', 'mean'),
-		%_Difference_Maximum=('percent_difference', 'max'),
-		%_Difference_Minimum=('percent_difference', 'min')
+		Pct_Difference_Average=('percent_difference', 'mean'),
+		Pct_Difference_Maximum=('percent_difference', 'max'),
+		Pct_Difference_Minimum=('percent_difference', 'min')
 	).reset_index()
 
 	# Optional: format numbers
@@ -248,9 +248,9 @@ def main():
 		'Difference_Average': 5,
 		'Difference_Maximum': 4,
 		'Difference_Minimum': 4,
-		'%_Difference_Average': 3,
-		'%_Difference_Maximum': 2,
-		'%_Difference_Minimum': 2
+		'Pct_Difference_Average': 3,
+		'Pct_Difference_Maximum': 2,
+		'Pct_Difference_Minimum': 2
 	})
 
 	# Display the summary table

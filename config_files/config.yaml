@@ -1,0 +1,71 @@
+# File paths
+default_rs_filepath: ./reference_standards/rs_ctDNA.csv
+default_samples_filepath: ./reference_samples.csv
+variant_file_path: /{base_dir}/{sample_id}_variants.tsv
+fusion_file_path: /{base_dir}/{sample_id}_fusion_check.csv
+HD728_reference_file: 'reference_standards/TruQ1_RS_HD728.txt'
+HD730_reference_file: 'reference_standards/TruQ1_RS_HD730.txt'
+
+output_dir: ./output/{year}/
+
+assays:
+  ctdna:
+    name: ctdna
+    # reference standards and samples
+    reference_standards: ./reference_standards/rs_ctDNA.csv
+    reference_samples: ./reference_samples/ctdna.csv
+    # variant and fusion file paths
+    variant_file_path: /{base_dir}/{sample_id}_variants.tsv
+    fusion_file_path: /{base_dir}/{sample_id}_fusion_check.csv
+    # wren results directory paths
+    240718_database_dir: /data/output/results/{run_str}/tso500_ctdna/post_processing/results/database
+    newer_run_database_dir: /data/output/results/{run_str}/tso500_ctdna/post_processing/database
+    archive_run_database_dir: /data/output/archive_results/{year}/{month}/{run_str}/tso500_ctdna/post_processing/database
+    test_filepaths:
+      [
+        '/Output/results/220629_A01771_0055_AH7GK7DRX2/Gathered_Results/Database/21M70050_variants.tsv',
+        '/Output/results/220926_A01771_0089_BHLLLJDRX2/Gathered_Results/Database/22M12181_variants.tsv',
+        '/Output/results/220428_A01771_0017_BH5TM2DRX2/Gathered_Results/Database/22M06894_variants.tsv',
+        '/Output/results/220627_A01771_0053_AH7K5KDRX2/Gathered_Results/Database/22M06893_variants.tsv',
+        '/Output/results/220722_A00748_0280_AH7JGHDRX2/Gathered_Results/Database/22M06896_variants.tsv',
+      ]
+  dna:
+    name: dna
+    filepath: ./reference_standards/rs_DNA.csv
+    # reference standards and samples
+    reference_standards: ./reference_standards/rs_DNA.csv
+    reference_samples: ./reference_samples/dna.csv
+    # variant and fusion file paths
+    variant_file_path: /{base_dir}/{sample_id}_variants.tsv
+    fusion_file_path: /{base_dir}/{sample_id}_fusion_check.csv
+    # wren results directory paths
+    240718_database_dir: /data/output/results/{run_str}/tso500_dna/post_processing/results/database
+    newer_run_database_dir: /data/output/results/{run_str}/tso500_dna/post_processing/database
+    archive_run_database_dir: /data/output/archive_results/{year}/{month}/{run_str}/tso500_dna/post_processing/database
+
+    test_filepaths:
+      [
+        '/Output/results/220629_A01771_0055_AH7GK7DRX2/Gathered_Results/Database/21M70050_variants.tsv',
+        '/Output/results/220926_A01771_0089_BHLLLJDRX2/Gathered_Results/Database/22M12181_variants.tsv',
+        '/Output/results/220428_A01771_0017_BH5TM2DRX2/Gathered_Results/Database/22M06894_variants.tsv',
+        '/Output/results/220627_A01771_0053_AH7K5KDRX2/Gathered_Results/Database/22M06893_variants.tsv',
+        '/Output/results/220722_A00748_0280_AH7JGHDRX2/Gathered_Results/Database/22M06896_variants.tsv',
+      ]
+  rna:
+    name: rna
+    # reference standards and samples
+    reference_standards: ./reference_standards/rs_RNA.csv
+    reference_samples: ./reference_samples/rna.csv
+    # variant and fusion file paths
+    variant_file_path: /{base_dir}/{sample_id}_variants.tsv
+    fusion_file_path: /{base_dir}/{sample_id}_fusion_check.csv
+    # wren results directory paths
+    240718_database_dir: /data/output/results/{run_str}/tso500_rna/post_processing/results/database
+    newer_run_database_dir: /data/output/results/{run_str}/tso500_rna/post_processing/database
+    archive_run_database_dir: /data/output/archive_results/{year}/{month}/{run_str}/tso500_rna/post_processing/database
+    test_filepaths:
+      [
+        '/Output/results/220620_A01771_0050_AH7K37DRX2/Gathered_Results/Database/22M81471_fusion_check.csv',
+        '/Output/results/220629_A01771_0055_AH7GK7DRX2/Gathered_Results/Database/22M81472_fusion_check.csv',
+        '/Output/results/221109_A01771_0114_AHNNLGDRX2_orig/Gathered_Results/Database/22M82583_fusion_check.csv',
+      ]
