@@ -1,8 +1,8 @@
+#!/usr/bin/env python3
 """
 Script to see whether or not variants supplied by known reference standards are called for the TSO500 RNA assay
 during uncertainty of measurement runs
 """
-
 import pandas as pd
 import itertools
 from glob import glob
@@ -13,39 +13,28 @@ from datetime import date
 import yaml
 import csv
 
+with open("config_files/rna_config.yaml", "r") as f:
+	config = yaml.safe_load(f)
 
 ###########################
 ###     Functions       ###
 ###########################
 
-def parse_rna_config():
-	"""
-	Load uncertainty of measurement sample IDs and their corresponding reference standard into a dictionary
-	"""
-
-	# Load in the yaml file
-	with open('/home/v.ni286029/UoM_project/config_files/rna_config.yaml') as config:
-
-		config_file = yaml.load(config, Loader=yaml.FullLoader) 
-		
-	return config_file
-
-
-def rna_sample_file_list(config_file): 
+def rna_sample_file_list(config): 
 	"""
 	Get all UOM crm sample filepaths from last year into list
-        """
-        
+		"""
+		
 	filepath_list = []
 
 	current_year = datetime.today().year
-	last_year = [str(current_year -1)[2:]]
-                
+	this_year = [str(current_year)[2:]]
+				
 	# Getting the sample IDs
-	for sample in config_file:
-                
+	for sample in config['samples']:
+				
 		# Keep the root path, all files from last year with the sample                
-		filepaths = glob(f'/Output/results/{last_year}*/Gathered_Results/Database/{sample}*_fusion_check.csv')
+		filepaths = glob(f'/Output/results/{this_year}*/TSO500/Gathered_Results/Database/{sample}*_fusion_check.csv')
 
 		if len(filepaths) == 0:
 
@@ -88,20 +77,18 @@ def get_variants_in_reference_file_rna():
 	"""
 
 	# Open RNA reference standards
-	reference_files = glob('/home/v.ni286029/UoM_project/reference_standards/RS_rna.txt')
+	reference_file = config.get("default_rs_filepath")
 
-	for file in reference_files:
+	with open(reference_file) as reference:
 
-		with open(file) as reference:
+		reference_variants_dict = {}
 
-			reference_variants_dict = {}
+		for line in reference:
 
-			for line in reference:
+			x = line.strip().split('\t')
 
-				x = line.strip().split('\t')
-
-				#0 is gene fusion
-				reference_variants_dict[x[0]] = None  
+			#0 is gene fusion
+			reference_variants_dict[x[0]] = None  
 
 	return reference_variants_dict
 
@@ -125,13 +112,13 @@ def compare_files(filepath_list, reference_variants_dict, samples_dict):
 
 			#Worksheet that corresponds with that run
 			worksheet = subprocess.run([f'grep {sample_id} /data/archive/*/{run_id}/SampleSheet.csv | cut -f 3 -d ","'], shell=True, capture_output=True)
-                    
+					
 			if (variant, value) in samples_dict.items():
-                    
+					
 				print(run_id, worksheet.stdout.rstrip(), sample_id, variant, "True")
 
 			else:
-                
+				
 				print(run_id, worksheet.stdout.rstrip(), sample_id, variant, "False")
 
 
@@ -139,31 +126,35 @@ def compare_files(filepath_list, reference_variants_dict, samples_dict):
 ###     Programme       ###
 ###########################
 
-# if __name__ == '__main__':
+def main():
+	# Arguments
+	parser = argparse.ArgumentParser(
+		description=
+		"Compare reference variants with sample variants. \n\n"
+		"- Reference variants csv must have columns 'AF%' and 'VCF_description' - check example reference_standards/rs_ctDNA.csv\n"
+		"- Samples csv must have columns 'sample_id', 'worksheet' and 'run_id' - check reference_samples_example.csv\n\n"
+		"Sensitivity summary stats printed to terminal, full variants table saved to /output/<year>/<year>_<assay>_uom.csv",
+		formatter_class=argparse.RawTextHelpFormatter
+	)
+	parser.add_argument('--config', '-c', default='config_files/rna_config.yaml', help='yaml config file')
+	parser.add_argument('--reference_dict', '-r', help='dictionary of sample IDs with rs') 
+	parser.add_argument('--filepath_list', '-fl', help='list of sample filepaths')
+	parser.add_argument('--file', '-f', help='splitting the filepaths into run id and sample id')
+	parser.add_argument('--reference_variants', '-ref', help='dict of reference variants/vaf')
 
-# #       # Arguments
-#         parser = argparse.ArgumentParser()
-#         parser.add_argument('--config_file', 'config', help = 'yaml config file')
-#         parser.add_argument('--reference_dict', 'r', help = 'dictionary of sample IDs with rs')   
-#         parser.add_argument('--filepath_list', 'fl', help = 'list of sample filepaths')
-#         parser.add_argument('--file', 'f', help = 'splitting the filepaths into run id and sample id')
-#         parser.add_argument('--reference_variants', 'ref', help = 'dict of reference variants/vaf')
-        
-#         args = parser.parse_args()
+	args = parser.parse_args()
 
+	# Get all uom sample files into list
+	filepath_list = rna_sample_file_list(config)
 
-# Load uncertainty of measurement sample IDs and their corresponding reference standard into a dictionary
-config_file = parse_rna_config()
+	# Get all variants and their corresponding vaf in a dictionary
+	samples_dict = get_variants_in_files_rna(filepath_list)  
 
-# Get all uom sample files into list
-filepath_list = rna_sample_file_list(config_file)
+	# Get the reference variants and vaf into dictionaries
+	reference_variants_dict = get_variants_in_reference_file_rna()
 
-# Get all variants and their corresponding vaf in a dictionary
-samples_dict = get_variants_in_files_rna(filepath_list)  
-
-# Get the reference variants and vaf into dictionaries
-reference_variants_dict = get_variants_in_reference_file_rna()
-
-#Final output 
-compare_rna_files = compare_files(filepath_list, reference_variants_dict, samples_dict)
-                       
+	#Final output 
+	compare_rna_files = compare_files(filepath_list, reference_variants_dict, samples_dict)
+					
+if __name__ == '__main__':
+	main()

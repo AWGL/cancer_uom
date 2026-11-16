@@ -1,32 +1,53 @@
 # Cancer Uncertainty of Measurement
 Uncertainty of measurement calculations for cancer NGS assays
 
+### Setup
+   Log into wren. If you have SSH set up you can clone the repo as follows:
+   ```
+   git clone git@github.com:AWGL/cancer_uom.git
+   cd cancer_uom
+   ```
+   Otherwise use:
+   ```
+   cd /home/transfer/Ant_Analysis/cancer_uom
+   ```
+   Activate the conda environment
+   ```
+   conda activate somatic_enrichment_nextflow
+   ```
+
 ### Run
+   While in the repository directory, run one of the following scripts:
+   - uom_ctdna.py
+   - uom_rna.py
+   - uom_dna.py
    ```
-  python <script_name>
+   python <script>
    ```
 
-## Instructions for yearly update
-   For ctDNA, run 'python uom_ctdna.py -h' for instructions
+### Instructions for yearly update
+   For ctDNA, run the following for instructions
+   ```python uom_ctdna.py -h```
 
-## Sera seq control variant list
-   https://www.seracare.com/globalassets/seracare-resources/tpr-0710-0672-seraseq-ctdna-complete-rm-af0.5-10690580.pdf
-
-   In practise, the ERBB2 variant 17:37880986A>ACGTGATGGCCTC is called as 17:37880981A>AGCATACGTGATG
+### Sera seq ctDNA control variant list
+   - See reference table here https://www.seracare.com/globalassets/seracare-resources/tpr-0710-0672-seraseq-ctdna-complete-rm-af0.5-10690580.pdf
+   - In practise, the ERBB2 variant 17:37880986A>ACGTGATGGCCTC is called as 17:37880981A>AGCATACGTGATG. The ctDNA reference standard has been changed to reflect this.
+   - BRCA1 chr17:41245586CT>C is sometimes called as a variant, sometimes filtered out as noise as it falls in a 'noisy' region. Scientists perform a manual check for this in any panels with BRCA1. So that may be artificially inflating the 'False' count - consider reporting without this variant.
 
 ### Find which samples correspond to which reference standard in shire 
    HD728, HD730 or RNA
 
-### Hardcoded filepaths
-   Currently, filepaths for the config file, reference files and worksheet are hardcoded into the code. Ensure these filepaths are correct for your local file locations.
+### Filepaths
+   - By default, filepaths for the reference standards, reference samples and output are set in the respective config files.
+   - These can be overriden using the relevant optional argument (see help)
    
 ### Reference standard (RS) and uncertainty of measurement sample run files are not in the same build 
-   As of Dec 2022, RS files are in build 38 and the uncertainty of measurement sample files are in build 37. tso500_automation_reference_controls file has the conversion.
+   - As of Dec 2022, RS files are in build 38 and the uncertainty of measurement sample files are in build 37. tso500_automation_reference_controls file has the conversion.
+   - The base changes recorded may differ between the reference standard and the sample run files. E.g. position_del in RS may be position_basechanges in sample.
   
-  The base changes recorded may differ between the reference standard and the sample run files. E.g. position_del in RS may be position_basechanges in sample.
-  
-### Splitting sample path to get sample ID and run ID
-  Ensure you're splitting the path at the correct places, the sample and run IDs are not always at the same place in the paths.
+### Troubleshooting missing paths
+   - Check the information in the reference samples file is correct.
+   - ```ls``` the filepath printed to the terminal. If no file is found find the true path and add an elif rule to the build_file_path function following the existing config.get() convention and add a corresponding entry to the relevant config
   
 ### Inserting worksheet ID into output
   Check in the sample sheet manually that where you 'cut' is the correct column that will extract the worksheet ID.

@@ -1,7 +1,17 @@
+# Filepaths
+default_rs_filepath: ./reference_standards/RS_rna.txt
+default_samples_filepath: ./reference_samples.csv
+variant_file_path: /{base_dir}/{sample_id}_variants.tsv
+fusion_file_path: /{base_dir}/{sample_id}_fusion_check.csv
+
+# Directory paths
+240718_database_dir: /data/output/results/{run_str}/tso500_ctdna/post_processing/results/database
+newer_run_database_dir: /data/output/results/{run_str}/tso500_ctdna/post_processing/database
+archive_run_database_dir: /data/output/archive_results/{year}/{month}/{run_str}/tso500_ctdna/post_processing/database
+output_dir: ./output/
+
 # Uncertainty of measurement sample IDs and their reference standard
 # To create a dictionary of sample IDs for which the measurement is calculated
 # These will be changed each year in here rather than in the main script
-
-22M81471: seraseqv4
-22M81472: seraseqv4
-22M82583: seraseqv4
+samples:
+  SERASEQRNAV4: seraseqv4
