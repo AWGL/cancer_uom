@@ -7,8 +7,7 @@ import os
 import numpy as np
 import pandas as pd
 import yaml
-from statsmodels.stats.proportion import proportion_confint
-
+from scipy.stats import binomtest
 
 """
 usage: python uom_ctdna.py [-h] [--config CONFIG] [--rs RS] [--samples SAMPLES] [--out OUT]
@@ -265,15 +264,15 @@ def main():
 	
 	# Summary of boolean column
 	sensitivity_summary = out_df['variant_in_sample'].value_counts(normalize=False)
-	confint = proportion_confint(
-		sensitivity_summary[True],
+	test = binomtest(
+		sensitivity_summary.get(True, 0),
 		sensitivity_summary.sum(),
-		alpha=0.05,
-		method='normal',
-		alternative='two-sided',
 		)
-	print(f"variant_in_sample summary \n {sensitivity_summary}")
-	print(f"95% Confidence Interval for Sensitivity: {confint}")
+	print(f"variant_in_sample summary \n {test}")
+	print(f"95% Confidence Interval for Sensitivity: {
+		test.proportion_ci(confidence_level=0.95, method='exact')
+		}"
+		)
 
 if __name__ == "__main__":
 	main()
