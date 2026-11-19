@@ -5,15 +5,14 @@ from uom_crm_dna.py import *
 from uom_dna.py import *
 from uom_rna.py import *
 
-dna_config_file = '/home/niamh/Documents/Niamh_uom/config_files/dna_config.yaml'
+dna_config_file = 'config_files/dna_config.yaml'
+rna_config_file = 'config_files/rna_config.yaml'
 
-rna_config_file = 'home/niamh/Documents/Niamh_uom/config_files/rna_config.yaml'
-
-dna_path_file = '/home/niamh/Documents/Niamh_uom/cancer_uom/cancer_uom/filepaths/dna_filepaths.txt'
-
-rna_path_file = '/home/niamh/Documents/Niamh_uom/cancer_uom/cancer_uom/filepaths/rna_filepaths.txt'
-
-crm_path_file = '/home/niamh/Documents/Niamh_uom/cancer_uom/cancer_uom/filepaths/crm_filepaths.txt'
+with open("config_files/test_config.yaml") as config:
+	config = yaml.safe_load(config)
+	dna_path_file = config.get("dna_path_file")
+	rna_path_file = config.get("rna_path_file")
+	crm_path_file = config.get("crm_path_file")
 
 class test_uom_dna(unittest.TestCase):
 
@@ -40,7 +39,7 @@ class test_uom_dna(unittest.TestCase):
 		"""
 
 		# Open file with known paths in
-		with open(path_file) as path_file:
+		with open(dna_path_file) as path_file:
 
 			for path in path_file:
 
@@ -76,8 +75,8 @@ class test_uom_dna(unittest.TestCase):
 		"""
 
 		# Known reference standard file
-		HD728_reference_file = 'reference_standards/TruQ1_RS_HD728.txt'
-		HD730_reference_file = 'reference_standards/TruQ1_RS_HD730.txt'
+		HD728_reference_file = config.get("HD728_reference_file")
+		HD730_reference_file = config.get("HD730_reference_file")
 
 		# Known variant in reference standards
 		HD728_variant = {'chr13:28502634CATG>C': '0.05'}
@@ -131,7 +130,7 @@ class test_uom_crm(unittest.TestCase):
 		"""
 
 		# Open file with known paths in
-		with open(path_file) as path_file:
+		with open(crm_path_file) as path_file:
 
 			for path in path_file:
 
