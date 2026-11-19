@@ -17,17 +17,17 @@ Uncertainty of measurement calculations for cancer NGS assays
    ```
 
 ### Run
-   While in the repository directory, run one of the following scripts:
-   - uom_ctdna.py
-   - uom_rna.py
-   - uom_dna.py
+   While in the repository directory, run as follows:
    ```
-   python <script>
+   python uom.py <assay>
    ```
+   Where assay is one of ctdna, dna, rna
 
 ### Instructions for yearly update
-   For ctDNA, run the following for instructions
-   ```python uom_ctdna.py -h```
+   Run the following for instructions
+   ```
+   python uom.py -h
+   ```
 
 ### Sera seq ctDNA control variant list
    - See reference table here https://www.seracare.com/globalassets/seracare-resources/tpr-0710-0672-seraseq-ctdna-complete-rm-af0.5-10690580.pdf
@@ -38,7 +38,7 @@ Uncertainty of measurement calculations for cancer NGS assays
    HD728, HD730 or RNA
 
 ### Filepaths
-   - By default, filepaths for the reference standards, reference samples and output are set in the respective config files.
+   - By default, filepaths for the reference standards, reference samples and output are set in config_wren.yaml
    - These can be overriden using the relevant optional argument (see help)
    
 ### Reference standard (RS) and uncertainty of measurement sample run files are not in the same build 
@@ -47,8 +47,9 @@ Uncertainty of measurement calculations for cancer NGS assays
   
 ### Troubleshooting missing paths
    - Check the information in the reference samples file is correct.
-   - ```ls``` the filepath printed to the terminal. If no file is found find the true path and add an elif rule to the build_file_path function following the existing config.get() convention and add a corresponding entry to the relevant config
+   - ```ls``` the filepath printed to the terminal. If no file is found:
+      - find the true path and add a corresponding entry to the relevant config section
+      - and add an elif rule to the build_file_path function following the existing assay_config.get() convention 
   
 ### Inserting worksheet ID into output
   Check in the sample sheet manually that where you 'cut' is the correct column that will extract the worksheet ID.
-  These differ in TSO500 and CRM sample sheets
