@@ -14,25 +14,26 @@ usage: python uom_ctdna.py [-h] [--config CONFIG] [--rs RS] [--samples SAMPLES] 
 use help flag for more info
 """
 
-def build_file_path(run_id, sample_id):
+def build_file_path(assay_config, run_id, sample_id):
 	"""Return correct variant file path for given run_id and sample_id."""
+	assay_name = assay_config.get("name")
 	run_str = str(run_id)
 	try:
 		numeric_part = int(run_str[:4])
 	except ValueError:
 		numeric_part = 0
 
-	if "240718" in run_str:
-		base_dir = config.get("240718_database_dir").format(run_str=run_str)
+	if "240718" in run_str and assay_name == "ctdna":
+		base_dir = assay_config.get("240718_database_dir").format(run_str=run_str)
 	elif numeric_part > 2404:
-		base_dir = config.get("newer_run_database_dir").format(run_str=run_str)
+		base_dir = assay_config.get("newer_run_database_dir").format(run_str=run_str)
 	else:
 		year = 2000 + int(run_str[:2])
 		month = run_str[2:4]
-		base_dir = config.get("archive_run_database_dir").format(year=year, month=month, run_str=run_str)
+		base_dir = assay_config.get("archive_run_database_dir").format(year=year, month=month, run_str=run_str)
 	
-	variant_file = config.get("variant_file_path").format(base_dir=base_dir, sample_id=sample_id)
-	fusion_file = config.get("fusion_file_path").format(base_dir=base_dir, sample_id=sample_id)
+	variant_file = assay_config.get("variant_file_path").format(base_dir=base_dir, sample_id=sample_id)
+	fusion_file = assay_config.get("fusion_file_path").format(base_dir=base_dir, sample_id=sample_id)
 	return variant_file, fusion_file
 
 
@@ -142,8 +143,8 @@ def main():
 		"Sensitivity summary stats printed to terminal, full variants table saved to /output/<year>/<year>_<assay>_uom.csv",
 		formatter_class=argparse.RawTextHelpFormatter
 		)
-	parser.add_argument("--assay", choices=["ctdna", "dna", "rna"], help="Assay type")
-	parser.add_argument("--config", default="config/config.yaml", help="YAML config file")
+	parser.add_argument("assay", choices=["ctdna", "dna", "rna"], help="Assay type, required")
+	parser.add_argument("--config", default="config/config_wren.yaml", help="YAML config file")
 	parser.add_argument("--rs", help="Reference variants CSV (rs_ctDNA.csv)")
 	parser.add_argument("--samples", help="Samples CSV (reference_samples.csv)")
 	parser.add_argument("--out", help="Output directory")
@@ -153,12 +154,14 @@ def main():
 		config = yaml.safe_load(f)
 
 	year = pd.Timestamp.now().year
-	assay = config.get(args.assay)
+
+	# get the part of the config for the chosen assay
+	assay_config = config.get("assays").get(args.assay)
 
 	if args.rs is None:
-		args.rs = assay.get("reference_standards")
+		args.rs = assay_config.get("reference_standards")
 	if args.samples is None:
-		args.samples = assay.get("reference_samples")
+		args.samples = assay_config.get("reference_samples")
 	if args.out is None:
 		output_dir = config.get("output_dir").format(year=year, assay=args.assay)
 		# make year subdirectory if it doesn't exist
@@ -190,7 +193,7 @@ def main():
 		
 		fusion_path_list = []
 
-		variant_path, fusion_path = build_file_path(run_id, sample_id)
+		variant_path, fusion_path = build_file_path(assay_config, run_id, sample_id)
 		sample_variants = load_sample_variants(variant_path)
 		sample_fusions = load_fusion_names(fusion_path)
 
@@ -239,7 +242,7 @@ def main():
 	print(f"✅ Wrote {len(out_df)} rows to {filepath}")
 	
 	# Group by Assay and calculate stats
-	out_df['Assay'] = "ctDNA"
+	out_df['Assay'] = args.assay
 	summary = out_df.groupby('Assay').agg(
 		Difference_Average=('difference', 'mean'),
 		Difference_Maximum=('difference', 'max'),
@@ -268,11 +271,8 @@ def main():
 		sensitivity_summary.get(True, 0),
 		sensitivity_summary.sum(),
 		)
-	print(f"variant_in_sample summary \n {test}")
-	print(f"95% Confidence Interval for Sensitivity: {
-		test.proportion_ci(confidence_level=0.95, method='exact')
-		}"
-		)
+	print(f"Summary of Clopper-Pearson exact test:\n{test}")
+	print(f"95% CI for Sensitivity: {test.proportion_ci(confidence_level=0.95, method='exact')}")
 
 if __name__ == "__main__":
 	main()
