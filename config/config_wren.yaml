@@ -39,8 +39,8 @@ assays:
     variant_file_path: /{base_dir}/{sample_id}_variants.tsv
     fusion_file_path: /{base_dir}/{sample_id}_fusion_check.csv
     # wren results directory paths
-    newer_run_database_dir: /data/output/results/{run_str}/tso500_dna/post_processing/database
-    archive_run_database_dir: /data/output/archive_results/{year}/{month}/{run_str}/tso500_dna/post_processing/database
+    newer_run_database_dir: /data/output/results/{run_str}/TSO500/DNA_Analysis/results/Database
+    archive_run_database_dir: /data/output/archive_results/{year}/{month}/{run_str}/TSO500/DNA_Analysis/results/Database
 
     test_filepaths:
       [
@@ -53,7 +53,7 @@ assays:
   rna:
     name: rna
     # reference standards and samples
-    reference_standards: ./reference_standards/rs_RNA.csv
+    reference_standards: ./reference_standards/RS_rna.txt
     reference_samples: ./reference_samples/rna.csv
     # variant and fusion file paths
     variant_file_path: /{base_dir}/{sample_id}_variants.tsv

@@ -100,7 +100,7 @@ def load_sample_variants(variant_path):
 		return {}
 
 	if not {"chr", "pos", "ref", "alt", "vaf"}.issubset(df.columns):
-		return {}
+		raise ValueError(f"{variant_path} must contain 'chr', 'pos', 'ref', 'alt', and 'vaf' columns")
 
 	df = df.dropna(subset=["chr", "pos", "ref", "alt", "vaf"])
 	variants = {}
